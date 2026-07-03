@@ -25,16 +25,55 @@ tabBtns.forEach(btn => {
   });
 });
 
-// Contact form (no backend — opens mailto as fallback)
+// Contact form
 const form = document.querySelector('.contact-form');
 if (form) {
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-    const name = form.querySelector('[name="name"]').value;
-    const email = form.querySelector('[name="email"]').value;
-    const message = form.querySelector('[name="message"]').value;
-    const subject = encodeURIComponent('New inquiry from ' + name);
-    const body = encodeURIComponent(message + '\n\nFrom: ' + name + '\nEmail: ' + email);
-    window.location.href = 'mailto:catuogno.gm@gmail.com?subject=' + subject + '&body=' + body;
+
+    const btn = form.querySelector('[type="submit"]');
+    const payload = {
+      name: form.querySelector('[name="name"]').value,
+      email: form.querySelector('[name="email"]').value,
+      phone: form.querySelector('[name="phone"]').value,
+      'project-type': form.querySelector('[name="project-type"]').value,
+      location: form.querySelector('[name="location"]').value,
+      timeline: form.querySelector('[name="timeline"]').value,
+      message: form.querySelector('[name="message"]').value,
+    };
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        form.innerHTML = '<p class="form-success">Thank you! We\'ll be in touch within 48 hours.</p>';
+      } else {
+        const err = await res.json();
+        setFormError(form, err.error || 'Something went wrong. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Send Inquiry';
+      }
+    } catch {
+      setFormError(form, 'Network error. Please try again.');
+      btn.disabled = false;
+      btn.textContent = 'Send Inquiry';
+    }
   });
+}
+
+function setFormError(form, msg) {
+  let el = form.querySelector('.form-error');
+  if (!el) {
+    el = document.createElement('p');
+    el.className = 'form-error';
+    form.appendChild(el);
+  }
+  el.textContent = msg;
 }
