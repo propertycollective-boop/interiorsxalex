@@ -1,16 +1,27 @@
-// Mobile nav toggle
+// ─── MOBILE NAV ───
 const toggle = document.querySelector('.nav-toggle');
-const navLeft = document.querySelector('.nav-links.left');
-const navRight = document.querySelector('.nav-links.right');
+const overlay = document.querySelector('.mobile-nav-overlay');
+const closeBtn = document.querySelector('.mobile-nav-close');
 
-if (toggle) {
-  toggle.addEventListener('click', () => {
-    navLeft && navLeft.classList.toggle('open');
-    navRight && navRight.classList.toggle('open');
-  });
+function openNav() {
+  overlay && overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeNav() {
+  overlay && overlay.classList.remove('open');
+  document.body.style.overflow = '';
 }
 
-// Portfolio tab switching
+toggle && toggle.addEventListener('click', openNav);
+closeBtn && closeBtn.addEventListener('click', closeNav);
+overlay && overlay.addEventListener('click', e => {
+  if (e.target === overlay) closeNav();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeNav();
+});
+
+// ─── PORTFOLIO TABS ───
 const tabBtns = document.querySelectorAll('.tab-btn');
 const tabPanels = document.querySelectorAll('.tab-panel');
 
@@ -25,25 +36,27 @@ tabBtns.forEach(btn => {
   });
 });
 
-// Contact form
+// ─── CONTACT FORM ───
 const form = document.querySelector('.contact-form');
 if (form) {
+  const submitBtn = form.querySelector('[type="submit"]');
+  const note = form.querySelector('.form-note');
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
-    const btn = form.querySelector('[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
     const payload = {
       name: form.querySelector('[name="name"]').value,
       email: form.querySelector('[name="email"]').value,
-      phone: form.querySelector('[name="phone"]').value,
-      'project-type': form.querySelector('[name="project-type"]').value,
-      location: form.querySelector('[name="location"]').value,
-      timeline: form.querySelector('[name="timeline"]').value,
+      phone: form.querySelector('[name="phone"]') ? form.querySelector('[name="phone"]').value : '',
+      'project-type': form.querySelector('[name="project-type"]') ? form.querySelector('[name="project-type"]').value : '',
+      location: form.querySelector('[name="location"]') ? form.querySelector('[name="location"]').value : '',
+      timeline: form.querySelector('[name="timeline"]') ? form.querySelector('[name="timeline"]').value : '',
       message: form.querySelector('[name="message"]').value,
     };
-
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
 
     try {
       const res = await fetch('/api/contact', {
@@ -53,17 +66,17 @@ if (form) {
       });
 
       if (res.ok) {
-        form.innerHTML = '<p class="form-success">Thank you! We\'ll be in touch within 48 hours.</p>';
+        form.innerHTML = '<p class="form-success">Thank you — we\'ll be in touch within 48 hours.</p>';
       } else {
         const err = await res.json();
         setFormError(form, err.error || 'Something went wrong. Please try again.');
-        btn.disabled = false;
-        btn.textContent = 'Send Inquiry';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Inquiry';
       }
     } catch {
       setFormError(form, 'Network error. Please try again.');
-      btn.disabled = false;
-      btn.textContent = 'Send Inquiry';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Inquiry';
     }
   });
 }
