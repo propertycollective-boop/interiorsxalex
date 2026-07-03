@@ -56,7 +56,7 @@ p { font-size: 14px; color: var(--st); line-height: 1.85; font-weight: 300; }
 
 /* ─── NAV ─── */
 .site-nav {
-  background: var(--ln); height: 72px;
+  background: var(--ln); height: 96px;
   border-bottom: 1px solid var(--wm);
   position: sticky; top: 0; z-index: 100;
 }
@@ -71,7 +71,7 @@ p { font-size: 14px; color: var(--st); line-height: 1.85; font-weight: 300; }
 .nav-links a { transition: color .2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--es); }
 .nav-logo-wrap { position: absolute; left: 50%; transform: translateX(-50%); }
-.nav-logo { height: 64px; width: auto; }
+.nav-logo { height: 88px; width: auto; }
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 20px; color: var(--es); }
 
 /* ─── HERO (homepage) ─── */
@@ -152,7 +152,7 @@ p { font-size: 14px; color: var(--st); line-height: 1.85; font-weight: 300; }
 /* ─── TABS ─── */
 .tabs-bar {
   background: var(--ow); border-bottom: 1px solid var(--wm);
-  position: sticky; top: 72px; z-index: 99;
+  position: sticky; top: 96px; z-index: 99;
 }
 .tabs-inner { display: flex; justify-content: center; }
 .tab-btn {
