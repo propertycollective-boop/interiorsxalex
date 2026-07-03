@@ -359,12 +359,13 @@ p { font-size: 14px; color: var(--st); line-height: 1.85; font-weight: 300; }
 .form-group input,
 .form-group textarea,
 .form-group select {
-  width: 100%; background: transparent; border: none;
+  width: 100%; background: var(--cr); border: none;
   border-bottom: 1px solid var(--wm); padding: 10px 0;
   font-size: 14px; color: var(--es); font-family: 'Jost', sans-serif;
   font-weight: 300; outline: none; transition: border-color .2s;
   -webkit-appearance: none; border-radius: 0;
 }
+.form-group select option { background: var(--cr); color: var(--es); }
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus { border-bottom-color: var(--es); }
@@ -372,6 +373,8 @@ p { font-size: 14px; color: var(--st); line-height: 1.85; font-weight: 300; }
 .form-group textarea::placeholder { color: var(--wm); }
 .form-group textarea { resize: none; height: 100px; }
 .form-note { font-size: 11px; color: var(--tp); text-align: center; margin-top: 16px; }
+.form-success { font-size: 16px; text-align: center; padding: 40px 0; color: var(--es); }
+.form-error { color: #c0392b; font-size: 13px; text-align: center; margin-top: 12px; }
 
 /* ─── FOOTER ─── */
 .site-footer { background: var(--es); padding: 64px 56px; }
