@@ -11,6 +11,21 @@ app = Flask(__name__, static_folder='.', static_url_path='')
 def index():
     return send_from_directory('.', 'index.html')
 
+@app.route('/about')
+def about():
+    return send_from_directory('.', 'about.html')
+
+@app.route('/services')
+def services():
+    return send_from_directory('.', 'services.html')
+
+@app.route('/portfolio')
+def portfolio():
+    return send_from_directory('.', 'portfolio.html')
+
+@app.route('/contact')
+def contact_page():
+    return send_from_directory('.', 'contact.html')
 
 @app.route('/<path:path>')
 def static_files(path):
