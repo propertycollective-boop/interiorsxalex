@@ -40,25 +40,64 @@ def contact():
         print('GMAIL_USER or GMAIL_APP_PASSWORD not set')
         return jsonify({'error': 'Server email not configured.'}), 500
 
-    body = f"""New contact form submission — Interiors x Alex
-
-Name:         {name}
-Email:        {email}
-Phone:        {phone or 'Not provided'}
-Project Type: {project_type or 'Not specified'}
-Location:     {location or 'Not provided'}
-Timeline:     {timeline or 'Not specified'}
-
-Message:
-{message or 'No message provided'}
+    html = f"""
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {{ margin: 0; padding: 0; background: #F5F0E8; font-family: Georgia, serif; }}
+    .wrap {{ max-width: 560px; margin: 40px auto; background: #FBF9F5; border: 1px solid #DDD5C5; }}
+    .header {{ background: #2A2218; padding: 36px 40px; }}
+    .header p {{ margin: 0; font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #C4AE96; }}
+    .header h1 {{ margin: 8px 0 0; font-family: Georgia, serif; font-size: 22px; font-weight: normal; color: #FBF9F5; }}
+    .body {{ padding: 40px; }}
+    .label {{ font-family: Arial, sans-serif; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: #9E8E7A; margin-bottom: 4px; }}
+    .value {{ font-size: 15px; color: #2A2218; margin: 0 0 28px; font-family: Georgia, serif; }}
+    .divider {{ border: none; border-top: 1px solid #DDD5C5; margin: 4px 0 28px; }}
+    .message-box {{ background: #F5F0E8; border-left: 3px solid #C4AE96; padding: 20px 24px; margin-top: 4px; }}
+    .message-box p {{ font-size: 14px; color: #7A6E60; line-height: 1.8; margin: 0; font-family: Georgia, serif; }}
+    .footer {{ background: #EAE3D5; padding: 20px 40px; font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 1px; color: #9E8E7A; text-align: center; }}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <p>New Inquiry</p>
+      <h1>Interiors x Alex</h1>
+    </div>
+    <div class="body">
+      <p class="label">Name</p>
+      <p class="value">{name}</p>
+      <p class="label">Email</p>
+      <p class="value">{email}</p>
+      <p class="label">Phone</p>
+      <p class="value">{phone or '—'}</p>
+      <hr class="divider">
+      <p class="label">Project Type</p>
+      <p class="value">{project_type or '—'}</p>
+      <p class="label">Location</p>
+      <p class="value">{location or '—'}</p>
+      <p class="label">Timeline</p>
+      <p class="value">{timeline or '—'}</p>
+      <hr class="divider">
+      <p class="label">Message</p>
+      <div class="message-box">
+        <p>{message or 'No message provided.'}</p>
+      </div>
+    </div>
+    <div class="footer">interiorsxalex.com</div>
+  </div>
+</body>
+</html>
 """
 
-    msg = MIMEMultipart()
+    msg = MIMEMultipart('alternative')
     msg['Subject'] = f'New Inquiry from {name} — Interiors x Alex'
     msg['From'] = smtp_user
     msg['To'] = to_email
     msg['Reply-To'] = email
-    msg.attach(MIMEText(body, 'plain'))
+    msg.attach(MIMEText(html, 'html'))
 
     try:
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
