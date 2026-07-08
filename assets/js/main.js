@@ -90,3 +90,28 @@ function setFormError(form, msg) {
   }
   el.textContent = msg;
 }
+
+// ─── INSTAGRAM FEED ───
+const igGrid = document.getElementById('insta-feed-grid');
+if (igGrid) {
+  fetch('/api/instagram')
+    .then(r => r.json())
+    .then(posts => {
+      if (!posts || posts.length === 0) {
+        igGrid.innerHTML = '<p class="insta-empty">Follow <a href="https://www.instagram.com/interiorsxalex" target="_blank" rel="noopener">@interiorsxalex</a> on Instagram.</p>';
+        return;
+      }
+      igGrid.innerHTML = posts.map(post => {
+        const img = post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url;
+        const isCarousel = post.media_type === 'CAROUSEL_ALBUM';
+        return `<a href="${post.permalink}" target="_blank" rel="noopener" class="insta-tile${isCarousel ? ' insta-carousel' : ''}">
+          <img src="${img}" alt="${(post.caption || '').substring(0, 60)}" loading="lazy">
+          ${isCarousel ? '<span class="insta-carousel-icon">&#10697;</span>' : ''}
+          ${post.media_type === 'VIDEO' ? '<span class="insta-video-icon">&#9654;</span>' : ''}
+        </a>`;
+      }).join('');
+    })
+    .catch(() => {
+      igGrid.innerHTML = '<p class="insta-empty">Follow <a href="https://www.instagram.com/interiorsxalex" target="_blank" rel="noopener">@interiorsxalex</a> on Instagram.</p>';
+    });
+}

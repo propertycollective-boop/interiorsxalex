@@ -1,10 +1,39 @@
 import os
+import time
 import smtplib
+import urllib.request
+import json
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from flask import Flask, request, jsonify, send_from_directory
 
 app = Flask(__name__, static_folder='.', static_url_path='')
+
+_ig_cache = {'data': None, 'ts': 0}
+IG_CACHE_TTL = 3600  # 1 hour
+
+def fetch_instagram_posts():
+    page_token = os.environ.get('IG_PAGE_TOKEN', '')
+    ig_id = os.environ.get('IG_ACCOUNT_ID', '17841464471266561')
+    if not page_token:
+        return []
+    url = (f'https://graph.facebook.com/v19.0/{ig_id}/media'
+           f'?fields=id,media_type,media_url,thumbnail_url,permalink,timestamp,caption'
+           f'&limit=12&access_token={page_token}')
+    try:
+        with urllib.request.urlopen(url, timeout=8) as r:
+            return json.loads(r.read()).get('data', [])
+    except Exception as e:
+        print(f'Instagram fetch error: {e}')
+        return []
+
+@app.route('/api/instagram')
+def instagram_feed():
+    global _ig_cache
+    if _ig_cache['data'] is None or time.time() - _ig_cache['ts'] > IG_CACHE_TTL:
+        _ig_cache['data'] = fetch_instagram_posts()
+        _ig_cache['ts'] = time.time()
+    return jsonify(_ig_cache['data'])
 
 
 @app.route('/')

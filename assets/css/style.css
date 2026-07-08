@@ -221,6 +221,17 @@ p { font-size: 14px; color: var(--st); line-height: 1.85; font-weight: 300; }
 .insta-tile { aspect-ratio: 1; overflow: hidden; position: relative; background: var(--wm); }
 .insta-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
 .insta-tile:hover img { transform: scale(1.06); }
+.insta-carousel-icon, .insta-video-icon {
+  position: absolute; top: 8px; right: 8px;
+  color: #fff; font-size: 14px; line-height: 1;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  pointer-events: none;
+}
+.insta-loading, .insta-empty {
+  grid-column: 1/-1; text-align: center; padding: 40px 0;
+  color: var(--tp); font-size: 13px;
+}
+.insta-empty a { color: var(--es); text-decoration: underline; }
 
 /* ─── ABOUT PAGE ─── */
 .about-hero {
