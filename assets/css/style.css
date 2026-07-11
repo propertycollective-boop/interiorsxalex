@@ -463,10 +463,10 @@ p { font-size: 14px; color: var(--st); line-height: 1.85; font-weight: 300; }
   .nav-logo { height: 36px; }
 
   /* hero */
-  .hero { height: 92vh; min-height: 500px; }
-  .hero-content { padding: 32px 20px 48px; }
-  .hero-content h1 { font-size: 38px; line-height: 1.1; margin-bottom: 20px; }
-  .hero-content .eyebrow { margin-bottom: 12px; }
+  .hero { height: 75vh; min-height: 420px; }
+  .hero-content { padding: 28px 20px 40px; }
+  .hero-content h1 { font-size: 36px; line-height: 1.1; margin-bottom: 20px; }
+  .hero-content .eyebrow { margin-bottom: 10px; }
 
   /* studio intro */
   .studio-intro .grid-2 { grid-template-columns: 1fr; gap: 32px; }
