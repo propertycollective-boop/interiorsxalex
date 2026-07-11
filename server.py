@@ -56,6 +56,10 @@ def portfolio():
 def contact_page():
     return send_from_directory('.', 'contact.html')
 
+@app.route('/privacy')
+def privacy():
+    return send_from_directory('.', 'privacy.html')
+
 @app.route('/<path:path>')
 def static_files(path):
     return send_from_directory('.', path)
