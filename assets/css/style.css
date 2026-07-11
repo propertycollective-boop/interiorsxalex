@@ -509,6 +509,7 @@ p { font-size: 14px; color: var(--st); line-height: 1.85; font-weight: 300; }
   .ditl-intro { padding: 0 20px 36px; }
   .highlights-section { padding: 0 20px 32px; }
   .insta-feed-section { padding: 0 20px 40px; }
+  .insta-home-section .insta-feed-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
   .insta-feed-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; }
   .highlight-ring { width: 64px; height: 64px; }
 
