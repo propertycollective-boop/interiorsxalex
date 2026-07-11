@@ -464,7 +464,7 @@ p { font-size: 14px; color: var(--st); line-height: 1.85; font-weight: 300; }
 
   /* hero */
   .hero { height: 75vh; min-height: 420px; }
-  .hero-content { padding: 28px 20px 40px; }
+  .hero-content { padding: 28px 20px 160px; }
   .hero-content h1 { font-size: 36px; line-height: 1.1; margin-bottom: 20px; }
   .hero-content .eyebrow { margin-bottom: 10px; }
 
