@@ -463,8 +463,8 @@ p { font-size: 14px; color: var(--st); line-height: 1.85; font-weight: 300; }
   .nav-logo { height: 36px; }
 
   /* hero */
-  .hero { height: 38vh; min-height: 240px; }
-  .hero-content { padding: 20px; align-self: center; margin-top: 0; }
+  .hero { height: 38vh; min-height: 240px; align-items: center; }
+  .hero-content { padding: 20px; margin-top: 0; }
   .hero-content h1 { font-size: 36px; line-height: 1.1; margin-bottom: 20px; }
   .hero-content .eyebrow { margin-bottom: 10px; }
 
