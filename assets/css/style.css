@@ -95,6 +95,10 @@ p { font-size: 14px; color: var(--st); line-height: 1.85; font-weight: 300; }
 
 /* ─── STUDIO INTRO ─── */
 .studio-intro { background: var(--cr); }
+.studio-intro-centered { max-width: 720px; margin: 0 auto; text-align: center; }
+.studio-intro-centered h2 { margin: 12px 0 20px; }
+.studio-intro-centered p { font-size: 15px; line-height: 1.9; }
+.intro-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
 .studio-text h2 { margin: 8px 0 20px; }
 .studio-text p { margin-bottom: 28px; }
 .studio-image img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
