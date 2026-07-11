@@ -16,6 +16,18 @@
 html { scroll-behavior: smooth; }
 body { background: var(--cr); color: var(--es); font-family: 'Jost', sans-serif; font-weight: 400; line-height: 1.6; }
 a { text-decoration: none; color: inherit; }
+
+/* ─── ADA / ACCESSIBILITY ─── */
+.skip-link {
+  position: absolute; top: -100px; left: 16px; z-index: 9999;
+  background: var(--es); color: var(--ow); padding: 10px 20px;
+  font-size: 13px; font-family: 'Jost', sans-serif; letter-spacing: .1em;
+  transition: top .15s;
+}
+.skip-link:focus { top: 8px; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--es); outline-offset: 3px;
+}
 img { display: block; max-width: 100%; }
 h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; line-height: 1.15; }
 h1 { font-size: 52px; }
