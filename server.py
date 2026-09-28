@@ -74,7 +74,7 @@ def static_files(path):
 def contact_test():
     smtp_user = os.environ.get('GMAIL_USER')
     smtp_pass = os.environ.get('GMAIL_APP_PASSWORD')
-    to_email = os.environ.get('CONTACT_EMAIL', 'interiorsxalex@gmail.com')
+    to_email = os.environ.get('CONTACT_EMAIL', 'design@interiorsxalex.com')
     if not smtp_user or not smtp_pass:
         return jsonify({'status': 'error', 'reason': 'GMAIL_USER or GMAIL_APP_PASSWORD not set'}), 500
     try:
@@ -103,7 +103,7 @@ def contact():
 
     smtp_user = os.environ.get('GMAIL_USER')
     smtp_pass = os.environ.get('GMAIL_APP_PASSWORD')
-    to_email = os.environ.get('CONTACT_EMAIL', 'interiorsxalex@gmail.com')
+    to_email = os.environ.get('CONTACT_EMAIL', 'design@interiorsxalex.com')
 
     if not smtp_user or not smtp_pass:
         print('GMAIL_USER or GMAIL_APP_PASSWORD not set')
@@ -174,13 +174,13 @@ def contact():
             server.sendmail(smtp_user, to_email, msg.as_string())
     except smtplib.SMTPAuthenticationError as e:
         print(f'SMTP auth error (check GMAIL_USER and GMAIL_APP_PASSWORD): {e}')
-        return jsonify({'error': 'Email authentication failed. Please contact us directly at hello@interiorsxalex.com'}), 500
+        return jsonify({'error': 'Email authentication failed. Please contact us directly at design@interiorsxalex.com'}), 500
     except smtplib.SMTPException as e:
         print(f'SMTP error: {e}')
-        return jsonify({'error': 'Failed to send message. Please email us directly at hello@interiorsxalex.com'}), 500
+        return jsonify({'error': 'Failed to send message. Please email us directly at design@interiorsxalex.com'}), 500
     except Exception as e:
         print(f'Unexpected email error: {type(e).__name__}: {e}')
-        return jsonify({'error': 'Failed to send message. Please email us directly at hello@interiorsxalex.com'}), 500
+        return jsonify({'error': 'Failed to send message. Please email us directly at design@interiorsxalex.com'}), 500
 
     return jsonify({'success': True}), 200
 
