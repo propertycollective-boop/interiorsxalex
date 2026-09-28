@@ -68,122 +68,95 @@ def static_files(path):
     return send_from_directory('.', path)
 
 
-def send_via_resend(to_email, subject, html, reply_to=None):
-    api_key = os.environ.get('RESEND_API_KEY', '')
-    from_addr = os.environ.get('FROM_EMAIL', 'Interiors x Alex <design@interiorsxalex.com>')
+def send_via_web3forms(subject, name, email, phone, project_type, location, timeline, message):
+    api_key = os.environ.get('WEB3FORMS_KEY', '')
     if not api_key:
-        raise ValueError('RESEND_API_KEY not set')
-    payload = {'from': from_addr, 'to': [to_email], 'subject': subject, 'html': html}
-    if reply_to:
-        payload['reply_to'] = reply_to
+        raise ValueError('WEB3FORMS_KEY not set')
+
+    body_text = f"""
+Name: {name}
+Email: {email}
+Phone: {phone or '—'}
+
+Project Type: {project_type or '—'}
+Location: {location or '—'}
+Timeline: {timeline or '—'}
+
+Message:
+{message or 'No message provided.'}
+    """.strip()
+
+    payload = {
+        'access_key': api_key,
+        'subject': subject,
+        'from_name': 'Interiors x Alex',
+        'name': name,
+        'email': email,
+        'message': body_text,
+        'botcheck': ''
+    }
+
     data = json.dumps(payload).encode('utf-8')
     req = urllib.request.Request(
-        'https://api.resend.com/emails',
+        'https://api.web3forms.com/submit',
         data=data,
-        headers={'Authorization': f'Bearer {api_key}', 'Content-Type': 'application/json'},
+        headers={'Content-Type': 'application/json', 'Accept': 'application/json'},
         method='POST'
     )
     with urllib.request.urlopen(req, timeout=10) as r:
         return json.loads(r.read())
 
+
 @app.route('/api/contact/test')
 def contact_test():
-    api_key = os.environ.get('RESEND_API_KEY')
-    to_email = os.environ.get('CONTACT_EMAIL', 'design@interiorsxalex.com')
+    api_key = os.environ.get('WEB3FORMS_KEY')
     if not api_key:
-        return jsonify({'status': 'error', 'reason': 'RESEND_API_KEY not set'}), 500
+        return jsonify({'status': 'error', 'reason': 'WEB3FORMS_KEY not set on Render'}), 500
     try:
-        result = send_via_resend(to_email, 'Test — Interiors x Alex', '<p>SMTP test OK</p>')
-        return jsonify({'status': 'ok', 'to': to_email, 'id': result.get('id')})
+        result = send_via_web3forms(
+            subject='Test — Interiors x Alex',
+            name='Test', email='test@test.com',
+            phone='', project_type='', location='', timeline='',
+            message='This is a test submission.'
+        )
+        return jsonify({'status': 'ok', 'result': result})
     except urllib.error.HTTPError as e:
         body = e.read().decode()
         return jsonify({'status': 'error', 'reason': f'HTTP {e.code}: {body}'}), 500
     except Exception as e:
         return jsonify({'status': 'error', 'reason': f'{type(e).__name__}: {e}'}), 500
 
+
 @app.route('/api/contact', methods=['POST'])
 def contact():
     data = request.get_json(silent=True) or {}
 
-    name = escape(data.get('name', '').strip())
-    email = data.get('email', '').strip()
-    phone = escape(data.get('phone', '').strip())
+    name         = escape(data.get('name', '').strip())
+    email        = data.get('email', '').strip()
+    phone        = escape(data.get('phone', '').strip())
     project_type = escape(data.get('project-type', '').strip())
-    location = escape(data.get('location', '').strip())
-    timeline = escape(data.get('timeline', '').strip())
-    message = escape(data.get('message', '').strip())
+    location     = escape(data.get('location', '').strip())
+    timeline     = escape(data.get('timeline', '').strip())
+    message      = escape(data.get('message', '').strip())
 
     if not name or not email:
         return jsonify({'error': 'Name and email are required.'}), 400
 
-    to_email = os.environ.get('CONTACT_EMAIL', 'design@interiorsxalex.com')
-
-    if not os.environ.get('RESEND_API_KEY'):
-        print('RESEND_API_KEY not set')
+    if not os.environ.get('WEB3FORMS_KEY'):
+        print('WEB3FORMS_KEY not set')
         return jsonify({'error': 'Server email not configured.'}), 500
 
-    html = f"""
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <style>
-    body {{ margin: 0; padding: 0; background: #F5F0E8; font-family: Georgia, serif; }}
-    .wrap {{ max-width: 560px; margin: 40px auto; background: #FBF9F5; border: 1px solid #DDD5C5; }}
-    .header {{ background: #2A2218; padding: 36px 40px; }}
-    .header p {{ margin: 0; font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #C4AE96; }}
-    .header h1 {{ margin: 8px 0 0; font-family: Georgia, serif; font-size: 22px; font-weight: normal; color: #FBF9F5; }}
-    .body {{ padding: 40px; }}
-    .label {{ font-family: Arial, sans-serif; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: #9E8E7A; margin-bottom: 4px; }}
-    .value {{ font-size: 15px; color: #2A2218; margin: 0 0 28px; font-family: Georgia, serif; }}
-    .divider {{ border: none; border-top: 1px solid #DDD5C5; margin: 4px 0 28px; }}
-    .message-box {{ background: #F5F0E8; border-left: 3px solid #C4AE96; padding: 20px 24px; margin-top: 4px; }}
-    .message-box p {{ font-size: 14px; color: #7A6E60; line-height: 1.8; margin: 0; font-family: Georgia, serif; }}
-    .footer {{ background: #EAE3D5; padding: 20px 40px; font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 1px; color: #9E8E7A; text-align: center; }}
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <div class="header">
-      <p>New Inquiry</p>
-      <h1>Interiors x Alex</h1>
-    </div>
-    <div class="body">
-      <p class="label">Name</p>
-      <p class="value">{name}</p>
-      <p class="label">Email</p>
-      <p class="value">{email}</p>
-      <p class="label">Phone</p>
-      <p class="value">{phone or '—'}</p>
-      <hr class="divider">
-      <p class="label">Project Type</p>
-      <p class="value">{project_type or '—'}</p>
-      <p class="label">Location</p>
-      <p class="value">{location or '—'}</p>
-      <p class="label">Timeline</p>
-      <p class="value">{timeline or '—'}</p>
-      <hr class="divider">
-      <p class="label">Message</p>
-      <div class="message-box">
-        <p>{message or 'No message provided.'}</p>
-      </div>
-    </div>
-    <div class="footer">interiorsxalex.com</div>
-  </div>
-</body>
-</html>
-"""
-
     subject = f'New Inquiry from {name} — Interiors x Alex'
+
     try:
-        send_via_resend(to_email, subject, html, reply_to=email)
+        send_via_web3forms(subject, name, email, phone, project_type, location, timeline, message)
     except urllib.error.HTTPError as e:
         body = e.read().decode()
-        print(f'Resend HTTP error {e.code}: {body}')
-        return jsonify({'error': 'Failed to send message. Please email us directly at design@interiorsxalex.com'}), 500
+        print(f'Web3Forms error {e.code}: {body}')
+        return jsonify({'error': 'Failed to send. Please email design@interiorsxalex.com directly.'}), 500
     except Exception as e:
-        print(f'Resend error: {type(e).__name__}: {e}')
-        return jsonify({'error': 'Failed to send message. Please email us directly at design@interiorsxalex.com'}), 500
+        print(f'Web3Forms error: {type(e).__name__}: {e}')
+        return jsonify({'error': 'Failed to send. Please email design@interiorsxalex.com directly.'}), 500
 
     return jsonify({'success': True}), 200
 
