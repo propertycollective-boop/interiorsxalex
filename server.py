@@ -1,11 +1,9 @@
 import os
 import time
-import smtplib
 import urllib.request
+import urllib.error
 import json
 from html import escape
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 from flask import Flask, request, jsonify, send_from_directory
 
 app = Flask(__name__, static_folder='.', static_url_path='')
@@ -70,21 +68,36 @@ def static_files(path):
     return send_from_directory('.', path)
 
 
+def send_via_resend(to_email, subject, html, reply_to=None):
+    api_key = os.environ.get('RESEND_API_KEY', '')
+    from_addr = os.environ.get('FROM_EMAIL', 'Interiors x Alex <design@interiorsxalex.com>')
+    if not api_key:
+        raise ValueError('RESEND_API_KEY not set')
+    payload = {'from': from_addr, 'to': [to_email], 'subject': subject, 'html': html}
+    if reply_to:
+        payload['reply_to'] = reply_to
+    data = json.dumps(payload).encode('utf-8')
+    req = urllib.request.Request(
+        'https://api.resend.com/emails',
+        data=data,
+        headers={'Authorization': f'Bearer {api_key}', 'Content-Type': 'application/json'},
+        method='POST'
+    )
+    with urllib.request.urlopen(req, timeout=10) as r:
+        return json.loads(r.read())
+
 @app.route('/api/contact/test')
 def contact_test():
-    smtp_user = os.environ.get('GMAIL_USER')
-    smtp_pass = os.environ.get('GMAIL_APP_PASSWORD')
+    api_key = os.environ.get('RESEND_API_KEY')
     to_email = os.environ.get('CONTACT_EMAIL', 'design@interiorsxalex.com')
-    if not smtp_user or not smtp_pass:
-        return jsonify({'status': 'error', 'reason': 'GMAIL_USER or GMAIL_APP_PASSWORD not set'}), 500
+    if not api_key:
+        return jsonify({'status': 'error', 'reason': 'RESEND_API_KEY not set'}), 500
     try:
-        with smtplib.SMTP('smtp.gmail.com', 587) as server:
-            server.ehlo()
-            server.starttls()
-            server.login(smtp_user, smtp_pass)
-        return jsonify({'status': 'ok', 'smtp_user': smtp_user, 'to': to_email})
-    except smtplib.SMTPAuthenticationError as e:
-        return jsonify({'status': 'error', 'reason': f'Auth failed: {e}'}), 500
+        result = send_via_resend(to_email, 'Test — Interiors x Alex', '<p>SMTP test OK</p>')
+        return jsonify({'status': 'ok', 'to': to_email, 'id': result.get('id')})
+    except urllib.error.HTTPError as e:
+        body = e.read().decode()
+        return jsonify({'status': 'error', 'reason': f'HTTP {e.code}: {body}'}), 500
     except Exception as e:
         return jsonify({'status': 'error', 'reason': f'{type(e).__name__}: {e}'}), 500
 
@@ -103,12 +116,10 @@ def contact():
     if not name or not email:
         return jsonify({'error': 'Name and email are required.'}), 400
 
-    smtp_user = os.environ.get('GMAIL_USER')
-    smtp_pass = os.environ.get('GMAIL_APP_PASSWORD')
     to_email = os.environ.get('CONTACT_EMAIL', 'design@interiorsxalex.com')
 
-    if not smtp_user or not smtp_pass:
-        print('GMAIL_USER or GMAIL_APP_PASSWORD not set')
+    if not os.environ.get('RESEND_API_KEY'):
+        print('RESEND_API_KEY not set')
         return jsonify({'error': 'Server email not configured.'}), 500
 
     html = f"""
@@ -163,27 +174,15 @@ def contact():
 </html>
 """
 
-    msg = MIMEMultipart('alternative')
-    msg['Subject'] = f'New Inquiry from {name} — Interiors x Alex'
-    msg['From'] = smtp_user
-    msg['To'] = to_email
-    msg['Reply-To'] = email
-    msg.attach(MIMEText(html, 'html'))
-
+    subject = f'New Inquiry from {name} — Interiors x Alex'
     try:
-        with smtplib.SMTP('smtp.gmail.com', 587) as server:
-            server.ehlo()
-            server.starttls()
-            server.login(smtp_user, smtp_pass)
-            server.sendmail(smtp_user, to_email, msg.as_string())
-    except smtplib.SMTPAuthenticationError as e:
-        print(f'SMTP auth error (check GMAIL_USER and GMAIL_APP_PASSWORD): {e}')
-        return jsonify({'error': 'Email authentication failed. Please contact us directly at design@interiorsxalex.com'}), 500
-    except smtplib.SMTPException as e:
-        print(f'SMTP error: {e}')
+        send_via_resend(to_email, subject, html, reply_to=email)
+    except urllib.error.HTTPError as e:
+        body = e.read().decode()
+        print(f'Resend HTTP error {e.code}: {body}')
         return jsonify({'error': 'Failed to send message. Please email us directly at design@interiorsxalex.com'}), 500
     except Exception as e:
-        print(f'Unexpected email error: {type(e).__name__}: {e}')
+        print(f'Resend error: {type(e).__name__}: {e}')
         return jsonify({'error': 'Failed to send message. Please email us directly at design@interiorsxalex.com'}), 500
 
     return jsonify({'success': True}), 200
