@@ -3,6 +3,7 @@ import time
 import smtplib
 import urllib.request
 import json
+from html import escape
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from flask import Flask, request, jsonify, send_from_directory
@@ -73,13 +74,13 @@ def static_files(path):
 def contact():
     data = request.get_json(silent=True) or {}
 
-    name = data.get('name', '').strip()
+    name = escape(data.get('name', '').strip())
     email = data.get('email', '').strip()
-    phone = data.get('phone', '').strip()
-    project_type = data.get('project-type', '').strip()
-    location = data.get('location', '').strip()
-    timeline = data.get('timeline', '').strip()
-    message = data.get('message', '').strip()
+    phone = escape(data.get('phone', '').strip())
+    project_type = escape(data.get('project-type', '').strip())
+    location = escape(data.get('location', '').strip())
+    timeline = escape(data.get('timeline', '').strip())
+    message = escape(data.get('message', '').strip())
 
     if not name or not email:
         return jsonify({'error': 'Name and email are required.'}), 400
