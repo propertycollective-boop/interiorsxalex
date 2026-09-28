@@ -78,7 +78,9 @@ def contact_test():
     if not smtp_user or not smtp_pass:
         return jsonify({'status': 'error', 'reason': 'GMAIL_USER or GMAIL_APP_PASSWORD not set'}), 500
     try:
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            server.ehlo()
+            server.starttls()
             server.login(smtp_user, smtp_pass)
         return jsonify({'status': 'ok', 'smtp_user': smtp_user, 'to': to_email})
     except smtplib.SMTPAuthenticationError as e:
@@ -169,7 +171,9 @@ def contact():
     msg.attach(MIMEText(html, 'html'))
 
     try:
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            server.ehlo()
+            server.starttls()
             server.login(smtp_user, smtp_pass)
             server.sendmail(smtp_user, to_email, msg.as_string())
     except smtplib.SMTPAuthenticationError as e:
