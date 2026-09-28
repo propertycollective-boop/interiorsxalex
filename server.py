@@ -70,6 +70,22 @@ def static_files(path):
     return send_from_directory('.', path)
 
 
+@app.route('/api/contact/test')
+def contact_test():
+    smtp_user = os.environ.get('GMAIL_USER')
+    smtp_pass = os.environ.get('GMAIL_APP_PASSWORD')
+    to_email = os.environ.get('CONTACT_EMAIL', 'interiorsxalex@gmail.com')
+    if not smtp_user or not smtp_pass:
+        return jsonify({'status': 'error', 'reason': 'GMAIL_USER or GMAIL_APP_PASSWORD not set'}), 500
+    try:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+            server.login(smtp_user, smtp_pass)
+        return jsonify({'status': 'ok', 'smtp_user': smtp_user, 'to': to_email})
+    except smtplib.SMTPAuthenticationError as e:
+        return jsonify({'status': 'error', 'reason': f'Auth failed: {e}'}), 500
+    except Exception as e:
+        return jsonify({'status': 'error', 'reason': f'{type(e).__name__}: {e}'}), 500
+
 @app.route('/api/contact', methods=['POST'])
 def contact():
     data = request.get_json(silent=True) or {}
@@ -156,9 +172,15 @@ def contact():
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
             server.login(smtp_user, smtp_pass)
             server.sendmail(smtp_user, to_email, msg.as_string())
+    except smtplib.SMTPAuthenticationError as e:
+        print(f'SMTP auth error (check GMAIL_USER and GMAIL_APP_PASSWORD): {e}')
+        return jsonify({'error': 'Email authentication failed. Please contact us directly at hello@interiorsxalex.com'}), 500
+    except smtplib.SMTPException as e:
+        print(f'SMTP error: {e}')
+        return jsonify({'error': 'Failed to send message. Please email us directly at hello@interiorsxalex.com'}), 500
     except Exception as e:
-        print(f'Email send error: {e}')
-        return jsonify({'error': 'Failed to send message. Please try again.'}), 500
+        print(f'Unexpected email error: {type(e).__name__}: {e}')
+        return jsonify({'error': 'Failed to send message. Please email us directly at hello@interiorsxalex.com'}), 500
 
     return jsonify({'success': True}), 200
 
