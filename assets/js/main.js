@@ -1,3 +1,15 @@
+// ─── PHONE FORMAT ───
+const phoneInput = document.getElementById('phone');
+if (phoneInput) {
+  phoneInput.addEventListener('input', e => {
+    let v = e.target.value.replace(/\D/g, '').slice(0, 10);
+    if (v.length >= 7) v = `(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6)}`;
+    else if (v.length >= 4) v = `(${v.slice(0,3)}) ${v.slice(3)}`;
+    else if (v.length > 0) v = `(${v}`;
+    e.target.value = v;
+  });
+}
+
 // ─── MOBILE NAV ───
 const toggle = document.querySelector('.nav-toggle');
 const overlay = document.querySelector('.mobile-nav-overlay');
