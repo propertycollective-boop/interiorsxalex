@@ -52,7 +52,6 @@ tabBtns.forEach(btn => {
 const form = document.querySelector('.contact-form');
 if (form) {
   const submitBtn = form.querySelector('[type="submit"]');
-  const note = form.querySelector('.form-note');
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -60,33 +59,44 @@ if (form) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
 
+    const val = name => (form.querySelector(`[name="${name}"]`) || {}).value || '';
+
     const payload = {
-      name: form.querySelector('[name="name"]').value,
-      email: form.querySelector('[name="email"]').value,
-      phone: form.querySelector('[name="phone"]') ? form.querySelector('[name="phone"]').value : '',
-      'project-type': form.querySelector('[name="project-type"]') ? form.querySelector('[name="project-type"]').value : '',
-      location: form.querySelector('[name="location"]') ? form.querySelector('[name="location"]').value : '',
-      timeline: form.querySelector('[name="timeline"]') ? form.querySelector('[name="timeline"]').value : '',
-      message: form.querySelector('[name="message"]').value,
+      access_key: 'a239424d-8411-478b-97db-62c7a37ec90f',
+      subject: `New Inquiry from ${val('name')} — Interiors x Alex`,
+      from_name: 'Interiors x Alex',
+      name: val('name'),
+      email: val('email'),
+      message: [
+        `Name: ${val('name')}`,
+        `Email: ${val('email')}`,
+        `Phone: ${val('phone') || '—'}`,
+        `Project Type: ${val('project-type') || '—'}`,
+        `Location: ${val('location') || '—'}`,
+        `Timeline: ${val('timeline') || '—'}`,
+        '',
+        `Message:\n${val('message') || 'No message provided.'}`,
+      ].join('\n'),
+      botcheck: '',
     };
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload),
       });
+      const data = await res.json();
 
-      if (res.ok) {
+      if (data.success) {
         form.innerHTML = '<p class="form-success">Thank you — we\'ll be in touch within 48 hours.</p>';
       } else {
-        const err = await res.json();
-        setFormError(form, err.error || 'Something went wrong. Please try again.');
+        setFormError(form, data.message || 'Something went wrong. Please try again.');
         submitBtn.disabled = false;
         submitBtn.textContent = 'Send Inquiry';
       }
     } catch {
-      setFormError(form, 'Network error. Please try again.');
+      setFormError(form, 'Network error. Please try again or email design@interiorsxalex.com.');
       submitBtn.disabled = false;
       submitBtn.textContent = 'Send Inquiry';
     }
