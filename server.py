@@ -1,15 +1,19 @@
 import os
 import time
+import smtplib
 import urllib.request
 import urllib.error
 import json
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from html import escape
 from flask import Flask, request, jsonify, send_from_directory
 
 app = Flask(__name__, static_folder='.', static_url_path='')
 
 _ig_cache = {'data': None, 'ts': 0}
-IG_CACHE_TTL = 3600  # 1 hour
+IG_CACHE_TTL = 3600
+
 
 def fetch_instagram_posts():
     page_token = os.environ.get('IG_PAGE_TOKEN', '')
@@ -25,6 +29,7 @@ def fetch_instagram_posts():
     except Exception as e:
         print(f'Instagram fetch error: {e}')
         return []
+
 
 @app.route('/api/instagram')
 def instagram_feed():
@@ -68,61 +73,143 @@ def static_files(path):
     return send_from_directory('.', path)
 
 
-def send_via_web3forms(subject, name, email, phone, project_type, location, timeline, message):
-    api_key = os.environ.get('WEB3FORMS_KEY', '')
-    if not api_key:
-        raise ValueError('WEB3FORMS_KEY not set')
+def build_email_html(name, email, phone, project_type, location, timeline, message):
+    def row(label, value):
+        if not value:
+            return ''
+        return f'''
+        <tr>
+          <td style="padding:10px 16px;background:#f9f6f1;border-bottom:1px solid #ede8df;
+                     width:140px;font-family:Georgia,serif;font-size:12px;
+                     color:#8a7b6b;letter-spacing:0.08em;text-transform:uppercase;
+                     vertical-align:top;">{label}</td>
+          <td style="padding:10px 16px;border-bottom:1px solid #ede8df;
+                     font-family:Georgia,serif;font-size:14px;color:#2c2418;
+                     vertical-align:top;">{escape(value)}</td>
+        </tr>'''
 
-    body_text = f"""
-Name: {name}
-Email: {email}
-Phone: {phone or '—'}
+    message_html = escape(message).replace('\n', '<br>') if message else 'No message provided.'
 
-Project Type: {project_type or '—'}
-Location: {location or '—'}
-Timeline: {timeline or '—'}
+    return f'''<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f4f0ea;font-family:Georgia,serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f0ea;padding:40px 20px;">
+  <tr><td align="center">
+    <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;">
 
-Message:
-{message or 'No message provided.'}
-    """.strip()
+      <!-- Header -->
+      <tr>
+        <td style="background:#2c2418;padding:36px 40px;text-align:center;">
+          <p style="margin:0;font-family:Georgia,serif;font-size:11px;color:#c9b99a;
+                    letter-spacing:0.2em;text-transform:uppercase;">Interiors x Alex</p>
+          <p style="margin:12px 0 0;font-family:Georgia,serif;font-size:22px;
+                    color:#f9f6f1;font-weight:normal;font-style:italic;">New Inquiry</p>
+        </td>
+      </tr>
 
-    payload = {
-        'access_key': api_key,
-        'subject': subject,
-        'from_name': 'Interiors x Alex',
-        'name': name,
-        'email': email,
-        'message': body_text,
-        'botcheck': ''
-    }
+      <!-- Intro -->
+      <tr>
+        <td style="background:#ffffff;padding:28px 40px 20px;
+                   border-left:1px solid #ede8df;border-right:1px solid #ede8df;">
+          <p style="margin:0;font-family:Georgia,serif;font-size:14px;color:#8a7b6b;
+                    line-height:1.6;">
+            A new project inquiry was submitted through <strong>interiorsxalex.com</strong>.
+          </p>
+        </td>
+      </tr>
 
-    data = json.dumps(payload).encode('utf-8')
-    req = urllib.request.Request(
-        'https://api.web3forms.com/submit',
-        data=data,
-        headers={'Content-Type': 'application/json', 'Accept': 'application/json'},
-        method='POST'
-    )
-    with urllib.request.urlopen(req, timeout=10) as r:
-        return json.loads(r.read())
+      <!-- Detail rows -->
+      <tr>
+        <td style="background:#ffffff;padding:0 40px 8px;
+                   border-left:1px solid #ede8df;border-right:1px solid #ede8df;">
+          <table width="100%" cellpadding="0" cellspacing="0"
+                 style="border:1px solid #ede8df;border-radius:4px;overflow:hidden;">
+            {row('Name', name)}
+            {row('Email', email)}
+            {row('Phone', phone)}
+            {row('Project Type', project_type)}
+            {row('Location', location)}
+            {row('Timeline', timeline)}
+          </table>
+        </td>
+      </tr>
+
+      <!-- Message -->
+      <tr>
+        <td style="background:#ffffff;padding:20px 40px 32px;
+                   border-left:1px solid #ede8df;border-right:1px solid #ede8df;">
+          <p style="margin:0 0 8px;font-family:Georgia,serif;font-size:11px;color:#8a7b6b;
+                    letter-spacing:0.12em;text-transform:uppercase;">Message</p>
+          <p style="margin:0;font-family:Georgia,serif;font-size:14px;color:#2c2418;
+                    line-height:1.7;white-space:pre-wrap;">{message_html}</p>
+        </td>
+      </tr>
+
+      <!-- Reply CTA -->
+      <tr>
+        <td style="background:#f9f6f1;padding:24px 40px;text-align:center;
+                   border:1px solid #ede8df;border-top:none;">
+          <a href="mailto:{escape(email)}"
+             style="display:inline-block;padding:12px 32px;background:#2c2418;
+                    color:#f9f6f1;font-family:Georgia,serif;font-size:13px;
+                    letter-spacing:0.1em;text-decoration:none;border-radius:2px;">
+            Reply to {escape(name.split()[0] if name else 'Client')}
+          </a>
+        </td>
+      </tr>
+
+      <!-- Footer -->
+      <tr>
+        <td style="padding:20px 40px;text-align:center;">
+          <p style="margin:0;font-family:Georgia,serif;font-size:11px;color:#b0a090;
+                    letter-spacing:0.08em;">
+            interiorsxalex.com &nbsp;·&nbsp; design@interiorsxalex.com
+          </p>
+        </td>
+      </tr>
+
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>'''
+
+
+def send_email(to_email, subject, html, reply_to=None):
+    smtp_user = os.environ.get('GMAIL_USER', '')
+    smtp_pass = os.environ.get('GMAIL_APP_PASSWORD', '')
+    if not smtp_user or not smtp_pass:
+        raise ValueError('GMAIL_USER or GMAIL_APP_PASSWORD not set')
+
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = subject
+    msg['From'] = f'Interiors x Alex <{smtp_user}>'
+    msg['To'] = to_email
+    if reply_to:
+        msg['Reply-To'] = reply_to
+    msg.attach(MIMEText(html, 'html'))
+
+    with smtplib.SMTP('smtp.gmail.com', 587) as server:
+        server.ehlo()
+        server.starttls()
+        server.login(smtp_user, smtp_pass)
+        server.sendmail(smtp_user, to_email, msg.as_string())
 
 
 @app.route('/api/contact/test')
 def contact_test():
-    api_key = os.environ.get('WEB3FORMS_KEY')
-    if not api_key:
-        return jsonify({'status': 'error', 'reason': 'WEB3FORMS_KEY not set on Render'}), 500
+    smtp_user = os.environ.get('GMAIL_USER')
+    smtp_pass = os.environ.get('GMAIL_APP_PASSWORD')
+    to_email = os.environ.get('CONTACT_EMAIL', 'design@interiorsxalex.com')
+    if not smtp_user or not smtp_pass:
+        return jsonify({'status': 'error', 'reason': 'GMAIL_USER or GMAIL_APP_PASSWORD not set'}), 500
     try:
-        result = send_via_web3forms(
-            subject='Test — Interiors x Alex',
-            name='Test', email='test@test.com',
-            phone='', project_type='', location='', timeline='',
-            message='This is a test submission.'
-        )
-        return jsonify({'status': 'ok', 'result': result})
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        return jsonify({'status': 'error', 'reason': f'HTTP {e.code}: {body}'}), 500
+        html = build_email_html('Test User', 'test@test.com', '(555) 555-5555',
+                                'Full-Service Design', 'Colts Neck, NJ', 'ASAP',
+                                'This is a test submission to verify email delivery.')
+        send_email(to_email, 'Test — Interiors x Alex', html, reply_to='test@test.com')
+        return jsonify({'status': 'ok', 'to': to_email})
     except Exception as e:
         return jsonify({'status': 'error', 'reason': f'{type(e).__name__}: {e}'}), 500
 
@@ -142,21 +229,21 @@ def contact():
     if not name or not email:
         return jsonify({'error': 'Name and email are required.'}), 400
 
-    if not os.environ.get('WEB3FORMS_KEY'):
-        print('WEB3FORMS_KEY not set')
+    smtp_user = os.environ.get('GMAIL_USER')
+    smtp_pass = os.environ.get('GMAIL_APP_PASSWORD')
+    if not smtp_user or not smtp_pass:
+        print('GMAIL credentials not set')
         return jsonify({'error': 'Server email not configured.'}), 500
 
+    to_email = os.environ.get('CONTACT_EMAIL', 'design@interiorsxalex.com')
     subject = f'New Inquiry from {name} — Interiors x Alex'
+    html = build_email_html(name, email, phone, project_type, location, timeline, message)
 
     try:
-        send_via_web3forms(subject, name, email, phone, project_type, location, timeline, message)
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        print(f'Web3Forms error {e.code}: {body}')
-        return jsonify({'error': 'Failed to send. Please email design@interiorsxalex.com directly.'}), 500
+        send_email(to_email, subject, html, reply_to=email)
     except Exception as e:
-        print(f'Web3Forms error: {type(e).__name__}: {e}')
-        return jsonify({'error': 'Failed to send. Please email design@interiorsxalex.com directly.'}), 500
+        print(f'Email error: {type(e).__name__}: {e}')
+        return jsonify({'error': 'Failed to send message. Please email design@interiorsxalex.com directly.'}), 500
 
     return jsonify({'success': True}), 200
 

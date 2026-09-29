@@ -62,36 +62,27 @@ if (form) {
     const val = name => (form.querySelector(`[name="${name}"]`) || {}).value || '';
 
     const payload = {
-      access_key: 'a239424d-8411-478b-97db-62c7a37ec90f',
-      subject: `New Inquiry from ${val('name')} — Interiors x Alex`,
-      from_name: 'Interiors x Alex',
       name: val('name'),
       email: val('email'),
-      message: [
-        `Name: ${val('name')}`,
-        `Email: ${val('email')}`,
-        `Phone: ${val('phone') || '—'}`,
-        `Project Type: ${val('project-type') || '—'}`,
-        `Location: ${val('location') || '—'}`,
-        `Timeline: ${val('timeline') || '—'}`,
-        '',
-        `Message:\n${val('message') || 'No message provided.'}`,
-      ].join('\n'),
-      botcheck: '',
+      phone: val('phone'),
+      'project-type': val('project-type'),
+      location: val('location'),
+      timeline: val('timeline'),
+      message: val('message'),
     };
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      const data = await res.json();
 
-      if (data.success) {
+      if (res.ok) {
         form.innerHTML = '<p class="form-success">Thank you — we\'ll be in touch within 48 hours.</p>';
       } else {
-        setFormError(form, data.message || 'Something went wrong. Please try again.');
+        const err = await res.json();
+        setFormError(form, err.error || 'Something went wrong. Please try again.');
         submitBtn.disabled = false;
         submitBtn.textContent = 'Send Inquiry';
       }
