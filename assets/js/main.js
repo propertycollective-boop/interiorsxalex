@@ -59,30 +59,42 @@ if (form) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
 
-    const val = name => (form.querySelector(`[name="${name}"]`) || {}).value || '';
+    const val = n => (form.querySelector(`[name="${n}"]`) || {}).value || '';
+
+    const lines = [
+      `Name: ${val('name')}`,
+      `Email: ${val('email')}`,
+      val('phone')        ? `Phone: ${val('phone')}`               : '',
+      val('project-type') ? `Project Type: ${val('project-type')}` : '',
+      val('location')     ? `Location: ${val('location')}`         : '',
+      val('timeline')     ? `Timeline: ${val('timeline')}`         : '',
+      '',
+      'Message:',
+      val('message') || 'No message provided.',
+    ].filter((l, i, a) => !(l === '' && a[i - 1] === '')).join('\n');
 
     const payload = {
+      access_key: 'a239424d-8411-478b-97db-62c7a37ec90f',
+      subject: `New Inquiry from ${val('name')} — Interiors x Alex`,
+      from_name: 'Interiors x Alex',
       name: val('name'),
       email: val('email'),
-      phone: val('phone'),
-      'project-type': val('project-type'),
-      location: val('location'),
-      timeline: val('timeline'),
-      message: val('message'),
+      message: lines,
+      botcheck: '',
     };
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload),
       });
+      const data = await res.json();
 
-      if (res.ok) {
+      if (data.success) {
         form.innerHTML = '<p class="form-success">Thank you — we\'ll be in touch within 48 hours.</p>';
       } else {
-        const err = await res.json();
-        setFormError(form, err.error || 'Something went wrong. Please try again.');
+        setFormError(form, data.message || 'Something went wrong. Please try again.');
         submitBtn.disabled = false;
         submitBtn.textContent = 'Send Inquiry';
       }
