@@ -60,6 +60,10 @@ def portfolio():
 def case_study_nj():
     return send_from_directory('portfolio', 'new-jersey-residence.html')
 
+@app.route('/portfolio/new-jersey-estate')
+def case_study_edinburgh():
+    return send_from_directory('portfolio', 'edinburgh-residence.html')
+
 @app.route('/contact')
 def contact_page():
     return send_from_directory('.', 'contact.html')
