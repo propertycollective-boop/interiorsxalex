@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Jersey Residence | Case Study | Interiors x Alex</title>
+  <meta name="description" content="A full-home design concept by Alexandra Hurwitz — open concept renovation with custom millwork, travertine, and a warm neutral palette throughout.">
+  <link rel="icon" href="../assets/images/favicon.ico">
+  <link rel="stylesheet" href="../assets/css/style.css?v=8">
+  <style>
+    /* ── CASE STUDY OVERRIDES ── */
+    .cs-hero {
+      position: relative;
+      height: 70vh;
+      min-height: 480px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .cs-hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .cs-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(44,36,24,.72) 0%, rgba(44,36,24,.1) 60%, transparent 100%);
+    }
+    .cs-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 48px 56px;
+      width: 100%;
+    }
+    .cs-hero-content .eyebrow { color: var(--sd); }
+    .cs-hero-content h1 { color: var(--ow); font-size: 52px; margin: 8px 0 0; }
+
+    /* ── META BAR ── */
+    .cs-meta {
+      background: var(--cr);
+      border-bottom: 1px solid var(--bl);
+    }
+    .cs-meta-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 56px;
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .cs-meta-item {
+      padding: 24px 0;
+      border-right: 1px solid var(--bl);
+      padding-right: 48px;
+    }
+    .cs-meta-item:last-child { border-right: none; }
+    .cs-meta-label {
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--sd);
+      font-family: var(--ff-sans);
+      margin-bottom: 4px;
+    }
+    .cs-meta-value {
+      font-size: 14px;
+      color: var(--es);
+      font-family: var(--ff-serif);
+    }
+
+    /* ── INTRO ── */
+    .cs-intro {
+      background: var(--ow);
+      padding: 80px 0;
+    }
+    .cs-intro-grid {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .cs-intro-text h2 { margin-top: 10px; }
+    .cs-intro-text p { margin-top: 16px; line-height: 1.75; color: var(--mn); }
+    .cs-scope-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .cs-scope-list li {
+      font-family: var(--ff-sans);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--es);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--bl);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cs-scope-list li::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--sd);
+      flex-shrink: 0;
+    }
+
+    /* ── PALETTE ── */
+    .cs-palette {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .cs-swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--bl);
+    }
+    .cs-palette-note {
+      margin-top: 10px;
+      font-size: 11px;
+      font-family: var(--ff-sans);
+      letter-spacing: .08em;
+      color: var(--mn);
+    }
+
+    /* ── ROOM SECTIONS ── */
+    .cs-rooms {
+      background: var(--cr);
+      padding: 88px 0;
+    }
+    .cs-room {
+      max-width: 1160px;
+      margin: 0 auto 80px;
+      padding: 0 56px;
+    }
+    .cs-room:last-child { margin-bottom: 0; }
+    .cs-room-label {
+      font-size: 9px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sd);
+      font-family: var(--ff-sans);
+      margin-bottom: 16px;
+    }
+    .cs-room h3 {
+      font-size: 28px;
+      margin: 0 0 28px;
+      color: var(--es);
+    }
+    .cs-mood-grid {
+      display: grid;
+      gap: 4px;
+    }
+    .cs-mood-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .cs-mood-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .cs-mood-grid.featured {
+      grid-template-columns: 2fr 1fr;
+    }
+    .cs-mood-grid img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+    .cs-mood-grid.featured img:first-child {
+      aspect-ratio: auto;
+      height: 100%;
+    }
+    .cs-mood-grid .cs-mood-sub {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
+    }
+    .cs-mood-grid .cs-mood-sub img {
+      height: 100%;
+      aspect-ratio: auto;
+    }
+
+    /* ── DIVIDER ── */
+    .cs-divider {
+      max-width: 1160px;
+      margin: 0 auto 80px;
+      padding: 0 56px;
+      border: none;
+      border-top: 1px solid var(--bl);
+    }
+
+    /* ── QUOTE ── */
+    .cs-quote {
+      background: var(--es);
+      padding: 72px 56px;
+      text-align: center;
+    }
+    .cs-quote blockquote {
+      max-width: 680px;
+      margin: 0 auto;
+      font-family: var(--ff-serif);
+      font-size: 26px;
+      font-style: italic;
+      color: var(--ow);
+      line-height: 1.5;
+    }
+    .cs-quote cite {
+      display: block;
+      margin-top: 20px;
+      font-family: var(--ff-sans);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--sd);
+      font-style: normal;
+    }
+
+    /* ── CTA ── */
+    .cs-cta {
+      background: var(--ow);
+      padding: 88px 56px;
+      text-align: center;
+    }
+    .cs-cta h2 { margin-top: 10px; }
+    .cs-cta p { margin: 16px auto 32px; max-width: 480px; color: var(--mn); line-height: 1.7; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .cs-hero { height: 50vh; }
+      .cs-hero-content { padding: 28px 20px; }
+      .cs-hero-content h1 { font-size: 28px; }
+      .cs-meta-inner { padding: 0 20px; gap: 0; flex-direction: column; }
+      .cs-meta-item { border-right: none; border-bottom: 1px solid var(--bl); padding: 16px 0; }
+      .cs-intro-grid { grid-template-columns: 1fr; gap: 40px; padding: 0 20px; }
+      .cs-intro { padding: 48px 0; }
+      .cs-room { padding: 0 20px; }
+      .cs-mood-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+      .cs-mood-grid.featured { grid-template-columns: 1fr; }
+      .cs-mood-grid.featured img:first-child { aspect-ratio: 4/3; height: auto; }
+      .cs-quote { padding: 48px 20px; }
+      .cs-quote blockquote { font-size: 20px; }
+      .cs-cta { padding: 48px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- NAV -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <ul class="nav-links left">
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Services</a></li>
+      </ul>
+      <a href="/" class="nav-logo-wrap">
+        <img class="nav-logo" src="../assets/images/logo.png" alt="Interiors x Alex">
+      </a>
+      <ul class="nav-links right">
+        <li><a href="/portfolio" class="active">Portfolio</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="cs-hero">
+      <img class="cs-hero-img" src="../assets/images/proj-1.jpg" alt="New Jersey Residence — Primary Bedroom">
+      <div class="cs-hero-overlay"></div>
+      <div class="cs-hero-content">
+        <p class="eyebrow">Case Study</p>
+        <h1>New Jersey Residence</h1>
+      </div>
+    </section>
+
+    <!-- META BAR -->
+    <div class="cs-meta">
+      <div class="cs-meta-inner">
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Project Type</p>
+          <p class="cs-meta-value">Full-Home Renovation</p>
+        </div>
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Location</p>
+          <p class="cs-meta-value">New Jersey</p>
+        </div>
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Year</p>
+          <p class="cs-meta-value">2024</p>
+        </div>
+        <div class="cs-meta-item">
+          <p class="cs-meta-label">Service</p>
+          <p class="cs-meta-value">Full-Service Design</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <section class="cs-intro">
+      <div class="cs-intro-grid">
+        <div class="cs-intro-text">
+          <p class="eyebrow">The Brief</p>
+          <h2>Open, warm,<br><em>entirely theirs</em></h2>
+          <p>The clients came to Alex with a clear feeling in mind — open, airy, and deeply personal. The existing home had great bones but a fragmented layout that worked against how the family actually lived.</p>
+          <p>Alex's design concept centered on opening the main floor into a true open-concept living space, introducing custom millwork, arched doorways, and a warm neutral palette throughout. Natural textures — travertine, linen, aged oak — ground every room while keeping the overall feel light.</p>
+          <div class="cs-palette">
+            <div class="cs-swatch" style="background:#f5f1eb;" title="Off White"></div>
+            <div class="cs-swatch" style="background:#d6cfc3;" title="Linen"></div>
+            <div class="cs-swatch" style="background:#b5a48e;" title="Sand"></div>
+            <div class="cs-swatch" style="background:#8a7b6b;" title="Warm Taupe"></div>
+            <div class="cs-swatch" style="background:#2c2418;" title="Espresso"></div>
+            <div class="cs-swatch" style="background:#c9a96e;" title="Brushed Brass"></div>
+          </div>
+          <p class="cs-palette-note">Palette: Off White · Linen · Sand · Warm Taupe · Espresso · Brushed Brass</p>
+        </div>
+        <div>
+          <p class="eyebrow">Project Scope</p>
+          <ul class="cs-scope-list" style="margin-top:16px;">
+            <li>Foyer Redesign &amp; Custom Molding</li>
+            <li>Full Kitchen Remodel</li>
+            <li>Wine Wall</li>
+            <li>Open-Concept Living &amp; Dining</li>
+            <li>Custom Built-ins</li>
+            <li>Primary Bedroom &amp; Walk-in Closet</li>
+            <li>Primary Bathroom Remodel</li>
+            <li>Guest Bathroom Remodel</li>
+            <li>Powder Room</li>
+            <li>Playrooms (×2)</li>
+            <li>New Flooring Throughout</li>
+            <li>Lighting &amp; Fixture Selection</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROOM MOOD BOARDS -->
+    <section class="cs-rooms">
+
+      <!-- KITCHEN -->
+      <div class="cs-room">
+        <p class="cs-room-label">01 — Kitchen</p>
+        <h3>The Kitchen</h3>
+        <div class="cs-mood-grid featured">
+          <img src="../assets/images/proj-3.jpg" alt="Kitchen mood board — primary view">
+          <div class="cs-mood-sub">
+            <img src="../assets/images/proj-4.jpg" alt="Kitchen detail — cabinetry">
+            <img src="../assets/images/proj-6.jpg" alt="Kitchen detail — fixtures">
+          </div>
+        </div>
+      </div>
+
+      <hr class="cs-divider">
+
+      <!-- DINING -->
+      <div class="cs-room">
+        <p class="cs-room-label">02 — Dining Room</p>
+        <h3>Dining Room</h3>
+        <div class="cs-mood-grid cols-3">
+          <img src="../assets/images/proj-1.jpg" alt="Dining room mood board">
+          <img src="../assets/images/proj-2.jpg" alt="Dining lighting concept">
+          <img src="../assets/images/proj-5.jpg" alt="Dining seating concept">
+        </div>
+      </div>
+
+      <hr class="cs-divider">
+
+      <!-- LIVING ROOM -->
+      <div class="cs-room">
+        <p class="cs-room-label">03 — Living Room</p>
+        <h3>Living Room &amp; Built-ins</h3>
+        <div class="cs-mood-grid cols-2">
+          <img src="../assets/images/proj-7.jpg" alt="Living room concept">
+          <img src="../assets/images/proj-8.jpg" alt="Built-in shelving concept">
+        </div>
+      </div>
+
+      <hr class="cs-divider">
+
+      <!-- PRIMARY BEDROOM -->
+      <div class="cs-room">
+        <p class="cs-room-label">04 — Primary Suite</p>
+        <h3>Primary Bedroom</h3>
+        <div class="cs-mood-grid cols-3">
+          <img src="../assets/images/proj-9.jpg" alt="Primary bedroom mood board">
+          <img src="../assets/images/proj-10.jpg" alt="Primary bedroom — bedding">
+          <img src="../assets/images/proj-11.jpg" alt="Primary bedroom — lighting">
+        </div>
+      </div>
+
+      <hr class="cs-divider">
+
+      <!-- PRIMARY BATH -->
+      <div class="cs-room">
+        <p class="cs-room-label">05 — Primary Bathroom</p>
+        <h3>Primary Bathroom</h3>
+        <div class="cs-mood-grid featured">
+          <img src="../assets/images/proj-12.jpg" alt="Primary bathroom — double vanity">
+          <div class="cs-mood-sub">
+            <img src="../assets/images/proj-1.jpg" alt="Primary bathroom — shower">
+            <img src="../assets/images/proj-2.jpg" alt="Primary bathroom — soaking tub">
+          </div>
+        </div>
+      </div>
+
+      <hr class="cs-divider">
+
+      <!-- GUEST BATH + POWDER -->
+      <div class="cs-room">
+        <p class="cs-room-label">06 — Bathrooms</p>
+        <h3>Guest Bathroom &amp; Powder Room</h3>
+        <div class="cs-mood-grid cols-2">
+          <img src="../assets/images/proj-3.jpg" alt="Guest bathroom concept">
+          <img src="../assets/images/proj-4.jpg" alt="Powder room concept">
+        </div>
+      </div>
+
+    </section>
+
+    <!-- QUOTE -->
+    <div class="cs-quote">
+      <blockquote>
+        "Every decision — from the furniture plan to the light switch placement — is made with both form and daily life in mind."
+      </blockquote>
+      <cite>Alexandra Hurwitz, Interiors x Alex</cite>
+    </div>
+
+    <!-- CTA -->
+    <div class="cs-cta">
+      <p class="eyebrow">Start Your Project</p>
+      <h2>Ready to reimagine<br><em>your space?</em></h2>
+      <p>Whether you're starting from scratch or refining what you have, Alex brings the same depth of thought to every project.</p>
+      <a href="/contact" class="btn btn-espresso">Begin Your Inquiry</a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="../assets/images/logo.png" alt="Interiors x Alex">
+      </div>
+      <nav class="footer-nav">
+        <a href="/about">About</a>
+        <a href="/services">Services</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/interiorsxalex" target="_blank" rel="noopener">@interiorsxalex</a>
+      </div>
+      <p class="footer-copy">&copy; 2025 Interiors x Alex. All rights reserved. | <a href="/privacy" style="text-decoration:underline;">Privacy Policy</a> | <a href="/terms" style="text-decoration:underline;">Terms of Use</a></p>
+    </div>
+  </footer>
+
+  <div class="mobile-nav-overlay" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+    <button class="mobile-nav-close" aria-label="Close">&times;</button>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/services">Services</a>
+    <a href="/portfolio">Portfolio</a>
+    <a href="/contact">Contact</a>
+    <a href="https://www.instagram.com/interiorsxalex" target="_blank" rel="noopener" class="mobile-nav-social">@interiorsxalex</a>
+  </div>
+
+  <script src="../assets/js/main.js?v=8"></script>
+</body>
+</html>

@@ -56,6 +56,10 @@ def services():
 def portfolio():
     return send_from_directory('.', 'portfolio.html')
 
+@app.route('/portfolio/new-jersey-residence')
+def case_study_nj():
+    return send_from_directory('portfolio', 'new-jersey-residence.html')
+
 @app.route('/contact')
 def contact_page():
     return send_from_directory('.', 'contact.html')
