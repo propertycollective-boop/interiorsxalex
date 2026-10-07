@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Jersey Estate | Case Study | Interiors x Alex</title>
-  <meta name="description" content="A full-home design concept by Alexandra Hurwitz — transitional interiors with warm neutrals, custom millwork, and curated furniture selections throughout.">
+  <meta name="description" content="A full-home interior design concept by Alexandra Hurwitz — a New Jersey estate featuring contemporary furnishings, layered textiles, and a warm, grounded palette.">
   <link rel="icon" href="../assets/images/favicon.ico">
   <link rel="stylesheet" href="../assets/css/style.css?v=8">
   <style>
-    /* ── GARAMOND THROUGHOUT ── */
     .cs-meta-value,
     .cs-intro-text p,
     .cs-scope-list li,
@@ -30,36 +29,40 @@
     .cs-meta-value { font-size: 16px; font-weight: 400; }
     .cs-scope-list li { font-size: 13px; letter-spacing: .08em; }
 
-    /* ── HERO ── */
+    /* ── HERO (text-only) ── */
     .cs-hero {
-      position: relative;
-      height: 70vh;
-      min-height: 480px;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-    }
-    .cs-hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-    .cs-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(44,36,24,.72) 0%, rgba(44,36,24,.1) 60%, transparent 100%);
+      background: var(--es);
+      padding: 100px 56px 80px;
     }
     .cs-hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 48px 56px;
-      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
     }
-    .cs-hero-content .eyebrow { color: var(--sd); }
-    .cs-hero-content h1 { color: var(--ow); font-size: 52px; margin: 8px 0 0; }
+    .cs-hero-content .eyebrow {
+      color: var(--sd);
+      font-family: var(--ff-sans);
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .cs-hero-content h1 {
+      color: var(--ow);
+      font-size: 56px;
+      margin: 0 0 20px;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+    .cs-hero-tagline {
+      color: var(--sd);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      margin: 0;
+      max-width: 520px;
+      line-height: 1.6;
+    }
 
     /* ── META BAR ── */
     .cs-meta {
@@ -79,162 +82,160 @@
       border-right: 1px solid var(--bl);
       padding-right: 48px;
     }
-    .cs-meta-item:last-child { border-right: none; padding-right: 0; }
+    .cs-meta-item:last-child { border-right: none; }
     .cs-meta-label {
-      font-size: 10px;
-      letter-spacing: .16em;
+      font-size: 9px;
+      letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--sd);
-      margin-bottom: 6px;
+      font-family: var(--ff-sans);
+      margin-bottom: 4px;
     }
     .cs-meta-value {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--es);
+      font-family: var(--ff-serif);
     }
 
-    /* ── INTRO GRID ── */
+    /* ── INTRO ── */
     .cs-intro {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 72px 56px;
+      background: var(--ow);
+      padding: 80px 0;
     }
     .cs-intro-grid {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 56px;
       display: grid;
-      grid-template-columns: 1fr 1fr 280px;
-      gap: 64px;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
       align-items: start;
     }
-    .cs-intro-text h2 {
-      font-size: 13px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--sd);
-      margin-bottom: 18px;
-    }
-    .cs-intro-text p {
-      font-size: 18px;
-      line-height: 1.75;
-      color: var(--es);
-    }
-    .cs-scope h3 {
-      font-size: 10px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--sd);
-      margin-bottom: 16px;
-    }
+    .cs-intro-text h2 { margin-top: 10px; }
+    .cs-intro-text p { margin-top: 16px; line-height: 1.75; color: var(--mn); }
     .cs-scope-list {
       list-style: none;
       padding: 0;
       margin: 0;
     }
     .cs-scope-list li {
-      font-size: 13px;
-      color: var(--es);
-      padding: 9px 0;
-      border-bottom: 1px solid var(--bl);
+      font-family: var(--ff-sans);
+      font-size: 11px;
+      letter-spacing: .1em;
       text-transform: uppercase;
+      color: var(--es);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--bl);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .cs-scope-list li:first-child { border-top: 1px solid var(--bl); }
+    .cs-scope-list li::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--sd);
+      flex-shrink: 0;
+    }
 
     /* ── PALETTE ── */
     .cs-palette {
-      border-top: 1px solid var(--bl);
-      padding-top: 40px;
-    }
-    .cs-palette h3 {
-      font-size: 10px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--sd);
-      margin-bottom: 20px;
-    }
-    .cs-palette-swatches {
       display: flex;
       gap: 12px;
+      margin-top: 32px;
       flex-wrap: wrap;
     }
     .cs-swatch {
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      border: 1px solid rgba(44,36,24,.12);
+      border: 1px solid var(--bl);
     }
     .cs-palette-note {
-      margin-top: 16px;
-      font-size: 12px;
-      color: var(--sd);
-      letter-spacing: .06em;
-      line-height: 1.6;
+      margin-top: 10px;
+      font-size: 11px;
+      font-family: var(--ff-sans);
+      letter-spacing: .08em;
+      color: var(--mn);
     }
 
     /* ── ROOM SECTIONS ── */
     .cs-rooms {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 56px 80px;
+      background: var(--cr);
+      padding: 88px 0;
     }
     .cs-room {
-      margin-bottom: 80px;
-      padding-top: 56px;
-      border-top: 1px solid var(--bl);
+      max-width: 1160px;
+      margin: 0 auto 88px;
+      padding: 0 56px;
     }
+    .cs-room:last-child { margin-bottom: 0; }
     .cs-room-label {
-      font-size: 10px;
-      letter-spacing: .22em;
+      font-size: 9px;
+      letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--sd);
-      margin-bottom: 28px;
-      display: block;
+      font-family: var(--ff-sans);
+      margin-bottom: 12px;
     }
-    .cs-mood-grid {
+    .cs-room h3 {
+      font-size: 28px;
+      margin: 0 0 32px;
+      color: var(--es);
+    }
+
+    /* ── IMAGE GRID — natural proportions for transparent PNGs ── */
+    .cs-img-grid {
       display: grid;
       gap: 12px;
     }
-    .cs-mood-grid.one   { grid-template-columns: 1fr; }
-    .cs-mood-grid.two   { grid-template-columns: 1fr 1fr; }
-    .cs-mood-grid.three { grid-template-columns: 1fr 1fr 1fr; }
-    .cs-mood-grid.two-one { grid-template-columns: 2fr 1fr; }
-    .cs-mood-grid.one-two { grid-template-columns: 1fr 2fr; }
-    .cs-mood-grid img {
+    .cs-img-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .cs-img-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .cs-img-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .cs-img-grid.wide-left { grid-template-columns: 3fr 2fr; }
+    .cs-img-grid.wide-right { grid-template-columns: 2fr 3fr; }
+    .cs-img-grid img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center bottom;
+      height: auto;
       display: block;
-      aspect-ratio: 16/10;
     }
-    .cs-mood-grid img.tall { aspect-ratio: 4/5; }
-    .cs-mood-grid img.wide { aspect-ratio: 21/9; }
-    .cs-room-caption {
-      margin-top: 16px;
-      font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-      font-size: 14px;
-      color: var(--sd);
-      letter-spacing: .06em;
-      line-height: 1.6;
+    .cs-img-full img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── DIVIDER ── */
+    .cs-divider {
+      max-width: 1160px;
+      margin: 0 auto 88px;
+      padding: 0 56px;
+      border: none;
+      border-top: 1px solid var(--bl);
     }
 
     /* ── QUOTE ── */
     .cs-quote {
       background: var(--es);
-      padding: 80px 56px;
+      padding: 72px 56px;
       text-align: center;
     }
     .cs-quote blockquote {
-      max-width: 720px;
+      max-width: 680px;
       margin: 0 auto;
-      font-size: 28px;
-      line-height: 1.55;
+      font-family: var(--ff-serif);
+      font-size: 26px;
       font-style: italic;
       color: var(--ow);
-      font-weight: 300;
+      line-height: 1.5;
     }
     .cs-quote cite {
       display: block;
-      margin-top: 24px;
-      font-size: 11px;
-      letter-spacing: .2em;
+      margin-top: 20px;
+      font-family: var(--ff-sans);
+      font-size: 10px;
+      letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--sd);
       font-style: normal;
@@ -242,238 +243,252 @@
 
     /* ── CTA ── */
     .cs-cta {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 80px 56px;
+      background: var(--ow);
+      padding: 88px 56px;
       text-align: center;
-      border-top: 1px solid var(--bl);
     }
-    .cs-cta h2 {
-      font-size: 13px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--sd);
-      margin-bottom: 16px;
-    }
-    .cs-cta p {
-      font-size: 20px;
-      color: var(--es);
-      max-width: 560px;
-      margin: 0 auto 36px;
-      line-height: 1.6;
-    }
+    .cs-cta h2 { margin-top: 10px; }
+    .cs-cta p { margin: 16px auto 32px; max-width: 480px; color: var(--mn); line-height: 1.7; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 860px) {
-      .cs-hero-content { padding: 32px 24px; }
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .cs-hero { padding: 72px 24px 56px; }
       .cs-hero-content h1 { font-size: 36px; }
-      .cs-intro { padding: 48px 24px; }
-      .cs-intro-grid { grid-template-columns: 1fr; gap: 40px; }
-      .cs-rooms { padding: 0 24px 60px; }
-      .cs-room { padding-top: 40px; margin-bottom: 56px; }
-      .cs-mood-grid.two,
-      .cs-mood-grid.three,
-      .cs-mood-grid.two-one,
-      .cs-mood-grid.one-two { grid-template-columns: 1fr; }
-      .cs-quote { padding: 56px 24px; }
-      .cs-quote blockquote { font-size: 22px; }
+      .cs-meta-inner { padding: 0 24px; gap: 0; flex-direction: column; }
+      .cs-meta-item { border-right: none; border-bottom: 1px solid var(--bl); padding-right: 0; }
+      .cs-intro-grid { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+      .cs-room { padding: 0 24px; }
+      .cs-img-grid.cols-2,
+      .cs-img-grid.cols-3,
+      .cs-img-grid.cols-4,
+      .cs-img-grid.wide-left,
+      .cs-img-grid.wide-right { grid-template-columns: 1fr; }
+      .cs-quote { padding: 48px 24px; }
+      .cs-quote blockquote { font-size: 20px; }
       .cs-cta { padding: 56px 24px; }
-      .cs-meta-inner { padding: 0 24px; gap: 24px; }
-      .cs-meta-item { padding-right: 24px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav class="site-nav">
-  <a href="/" class="nav-logo">Interiors x Alex</a>
-  <button class="nav-toggle" aria-label="Open menu">&#9776;</button>
-  <ul class="nav-links">
-    <li><a href="/about">About</a></li>
-    <li><a href="/services">Services</a></li>
-    <li><a href="/portfolio" class="active">Portfolio</a></li>
-    <li><a href="/contact">Contact</a></li>
-  </ul>
-</nav>
-<div class="mobile-nav-overlay">
-  <button class="mobile-nav-close" aria-label="Close menu">&times;</button>
-  <ul class="mobile-nav-links">
-    <li><a href="/about">About</a></li>
-    <li><a href="/services">Services</a></li>
-    <li><a href="/portfolio">Portfolio</a></li>
-    <li><a href="/contact">Contact</a></li>
-  </ul>
-</div>
+  <!-- NAV -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo">Interiors <em>x</em> Alex</a>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/portfolio" class="active">Portfolio</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-<!-- ── HERO ── -->
-<section class="cs-hero">
-  <img class="cs-hero-img" src="../assets/images/cs-edinburgh/living-room-mood.webp" alt="New Jersey Estate — Living Room" style="object-position: center 30%;">
-  <div class="cs-hero-overlay"></div>
-  <div class="cs-hero-content">
-    <p class="eyebrow">Case Study</p>
-    <h1>New Jersey Estate</h1>
-  </div>
-</section>
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="cs-hero-content">
+      <span class="eyebrow">Case Study</span>
+      <h1>New Jersey Estate</h1>
+      <p class="cs-hero-tagline">A full-home design concept grounded in warmth, texture, and considered restraint.</p>
+    </div>
+  </section>
 
-<!-- ── META BAR ── -->
-<div class="cs-meta">
-  <div class="cs-meta-inner">
-    <div class="cs-meta-item">
-      <p class="cs-meta-label">Location</p>
-      <p class="cs-meta-value">New Jersey</p>
-    </div>
-    <div class="cs-meta-item">
-      <p class="cs-meta-label">Scope</p>
-      <p class="cs-meta-value">Full-Home Design</p>
-    </div>
-    <div class="cs-meta-item">
-      <p class="cs-meta-label">Rooms</p>
-      <p class="cs-meta-value">6 Spaces</p>
-    </div>
-    <div class="cs-meta-item">
-      <p class="cs-meta-label">Style</p>
-      <p class="cs-meta-value">Transitional Luxury</p>
+  <!-- META BAR -->
+  <div class="cs-meta">
+    <div class="cs-meta-inner">
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Location</p>
+        <p class="cs-meta-value">New Jersey</p>
+      </div>
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Scope</p>
+        <p class="cs-meta-value">Full-Home Design</p>
+      </div>
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Style</p>
+        <p class="cs-meta-value">Contemporary</p>
+      </div>
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Rooms</p>
+        <p class="cs-meta-value">Six Spaces</p>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ── INTRO ── -->
-<section class="cs-intro">
-  <div class="cs-intro-grid">
-    <div class="cs-intro-text">
-      <h2>Design Direction</h2>
-      <p>A complete interior concept for a multi-story New Jersey estate, blending transitional warmth with elevated material choices. The design balances dark, grounding tones — charcoal built-ins, blackened oak — against cream bouclé, travertine, and natural light, creating spaces that feel refined yet deeply livable.</p>
-    </div>
-    <div class="cs-intro-text">
-      <p>Each room was approached as its own composition: the kitchen pairs matte black cabinetry with blonde oak and champagne bronze hardware; the living room centers on sculptural furniture and an arched fireplace; the dining room offers two distinct directions — a warm walnut tulip table or a monolithic travertine slab. The office draws from Benjamin Moore's Silhouette to create a moody, focused retreat.</p>
-    </div>
-    <div>
-      <div class="cs-scope">
-        <h3>Scope of Work</h3>
-        <ul class="cs-scope-list">
-          <li>Living Room</li>
-          <li>Dining Room</li>
-          <li>Kitchen</li>
-          <li>Home Office</li>
-          <li>Sitting Room</li>
-          <li>Kid's Bathroom</li>
+  <!-- INTRO -->
+  <section class="cs-intro">
+    <div class="cs-intro-grid">
+      <div class="cs-intro-text">
+        <span class="eyebrow">The Project</span>
+        <h2>Warmth at Every Scale</h2>
+        <p>This New Jersey estate called for a full-home design concept that could feel simultaneously grounded and elevated — warm enough for family life, refined enough to make an impression. Each room was designed as a distinct environment while maintaining a unified material language across the entire home.</p>
+        <p>Natural stone, dark-stained wood, layered textiles, and a palette drawn from earth and shadow form the backbone of the design. Furniture selections balance sculptural presence with livability, and lighting was curated to anchor each space with character.</p>
+        <div class="cs-palette">
+          <span class="cs-swatch" style="background:#2c2418;"></span>
+          <span class="cs-swatch" style="background:#5a4e42;"></span>
+          <span class="cs-swatch" style="background:#c4b49a;"></span>
+          <span class="cs-swatch" style="background:#e8e0d4;"></span>
+          <span class="cs-swatch" style="background:#3a4a5a;"></span>
+          <span class="cs-swatch" style="background:#8c7a6a;"></span>
+        </div>
+        <p class="cs-palette-note">Espresso · Mocha · Sand · Cream · Slate · Warm Taupe</p>
+      </div>
+      <div>
+        <span class="eyebrow">Scope of Work</span>
+        <ul class="cs-scope-list" style="margin-top:10px;">
+          <li>Furniture Selection &amp; Procurement</li>
+          <li>Materials &amp; Finish Specification</li>
+          <li>Lighting Design</li>
+          <li>Space Planning &amp; Elevations</li>
+          <li>Textile &amp; Rug Curation</li>
+          <li>Kitchen Design</li>
+          <li>Bathroom Design</li>
         </ul>
       </div>
-      <div class="cs-palette" style="margin-top:40px;">
-        <h3>Palette</h3>
-        <div class="cs-palette-swatches">
-          <div class="cs-swatch" style="background:#f5f2ec;"></div>
-          <div class="cs-swatch" style="background:#1a1a1a;"></div>
-          <div class="cs-swatch" style="background:#c8a96e;"></div>
-          <div class="cs-swatch" style="background:#d6cfc4;"></div>
-          <div class="cs-swatch" style="background:#4a4035;"></div>
-          <div class="cs-swatch" style="background:#7a6a58;"></div>
-        </div>
-        <p class="cs-palette-note">Cream · Blackened Oak · Champagne Bronze · Greige · Espresso · Warm Taupe</p>
+    </div>
+  </section>
+
+  <!-- ROOM SECTIONS -->
+  <section class="cs-rooms">
+
+    <!-- LIVING ROOM -->
+    <div class="cs-room">
+      <p class="cs-room-label">01 — Living Room</p>
+      <h3>Anchored by Contrast</h3>
+      <div class="cs-img-grid wide-left">
+        <img src="../assets/images/cs-edinburgh/living-room-mood.png"
+             alt="Living room mood board — cream sectional, shearling chair, fluted coffee table, black media console">
+        <img src="../assets/images/cs-edinburgh/living-room-floor-plan.png"
+             alt="Living room floor plan and elevation drawings">
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ── ROOMS ── -->
-<div class="cs-rooms">
+    <hr class="cs-divider">
 
-  <!-- Living Room -->
-  <div class="cs-room">
-    <span class="cs-room-label">Living Room</span>
-    <div class="cs-mood-grid two">
-      <img src="../assets/images/cs-edinburgh/living-room-mood.webp" alt="Living room mood board — cream sectional and fluted coffee table">
-      <img src="../assets/images/cs-edinburgh/living-room-plans.png" alt="Living room floor plan and elevations">
+    <!-- SITTING ROOM -->
+    <div class="cs-room">
+      <p class="cs-room-label">02 — Sitting Room</p>
+      <h3>Curve &amp; Texture</h3>
+      <div class="cs-img-full" style="margin-bottom:12px;">
+        <img src="../assets/images/cs-edinburgh/sitting-room-mood-1.png"
+             alt="Sitting room — curved slate velvet sofa, pedestal coffee table, camel bouclé chairs">
+      </div>
+      <div class="cs-img-grid cols-3">
+        <img src="../assets/images/cs-edinburgh/sitting-room-mood-2.png"
+             alt="Sitting room with geometric rug layered under seating group">
+        <img src="../assets/images/cs-edinburgh/sitting-room-mood-3.png"
+             alt="Alternate sitting room — dark linen chairs and sculptural stone coffee table">
+        <img src="../assets/images/cs-edinburgh/sitting-room-lighting.png"
+             alt="Sitting room lighting options — globe cluster, brass linear pendant, ceiling fan, flush mount">
+      </div>
     </div>
-    <p class="cs-room-caption">A cream modular sectional anchors the space around a fluted dark-oak coffee table with marble top. A sculptural accent chair in shearling adds texture alongside a four-door media console. The fireplace wall features an arched opening — a quiet architectural anchor for the entire room.</p>
+
+    <hr class="cs-divider">
+
+    <!-- DINING ROOM -->
+    <div class="cs-room">
+      <p class="cs-room-label">03 — Dining Room</p>
+      <h3>Two Visions, One Statement</h3>
+      <div class="cs-img-grid cols-2">
+        <img src="../assets/images/cs-edinburgh/dining-room-1.png"
+             alt="Dining room option A — walnut tulip pedestal table with cream dining chairs and brass crystal pendant">
+        <img src="../assets/images/cs-edinburgh/dining-room-2.png"
+             alt="Dining room option B — travertine pedestal table with rope swag globe pendants">
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- KITCHEN -->
+    <div class="cs-room">
+      <p class="cs-room-label">04 — Kitchen</p>
+      <h3>Material &amp; Detail</h3>
+      <div class="cs-img-full" style="margin-bottom:12px;">
+        <img src="../assets/images/cs-edinburgh/kitchen-materials.png"
+             alt="Kitchen materials board — marble countertop, black and oak cabinet doors, champagne bronze faucet">
+      </div>
+      <div class="cs-img-grid cols-3">
+        <img src="../assets/images/cs-edinburgh/counter-stools-wood.png"
+             alt="Counter stool options — wood frame with cream bouclé and white upholstery">
+        <img src="../assets/images/cs-edinburgh/counter-stools-metal.png"
+             alt="Counter stool options — dark metal frame with white upholstery">
+        <img src="../assets/images/cs-edinburgh/kitchen-dining.png"
+             alt="Kitchen dining area — round dark marble pedestal table with upholstered chairs and dome pendant">
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- OFFICE -->
+    <div class="cs-room">
+      <p class="cs-room-label">05 — Office</p>
+      <h3>Focused &amp; Dark</h3>
+      <div class="cs-img-full">
+        <img src="../assets/images/cs-edinburgh/office-mood.png"
+             alt="Office — dark built-in bookcase, dark wood desk, cream barrel chair, verdigris dome pendant">
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- KID'S BATHROOM -->
+    <div class="cs-room">
+      <p class="cs-room-label">06 — Kid's Bathroom</p>
+      <h3>Clean Lines, Natural Materials</h3>
+      <div class="cs-img-grid cols-2">
+        <img src="../assets/images/cs-edinburgh/bath-materials.png"
+             alt="Kid's bathroom materials board — Calacatta marble, fluted oak panel, pebble mosaic, matte black fixtures">
+        <img src="../assets/images/cs-edinburgh/bath-floor-plan.png"
+             alt="Kid's bathroom floor plan and elevation drawings">
+      </div>
+    </div>
+
+  </section>
+
+  <!-- QUOTE -->
+  <div class="cs-quote">
+    <blockquote>
+      "Every room should feel intentional — like the space itself has something to say."
+    </blockquote>
+    <cite>Alexandra Hurwitz &nbsp;·&nbsp; Interiors x Alex</cite>
   </div>
 
-  <!-- Sitting Room -->
-  <div class="cs-room">
-    <span class="cs-room-label">Sitting Room</span>
-    <div class="cs-mood-grid three">
-      <img src="../assets/images/cs-edinburgh/sitting-room-1.webp" alt="Sitting room — curved slate sofa with bouclé chairs">
-      <img src="../assets/images/cs-edinburgh/sitting-room-2.webp" alt="Sitting room with layered rug and curved sofa">
-      <img src="../assets/images/cs-edinburgh/sitting-room-3.webp" alt="Sitting room — navy sofa with geode marble coffee table">
+  <!-- CTA -->
+  <section class="cs-cta">
+    <span class="eyebrow">Start a Project</span>
+    <h2>Ready to Design Your Space?</h2>
+    <p>Whether you're starting from scratch or refining what you have, Alexandra brings a considered eye and a clear process to every project.</p>
+    <a href="/contact" class="btn">Get in Touch</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-logo">Interiors <em>x</em> Alex</p>
+        <p class="footer-tagline">Design that lives with you.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/portfolio">Portfolio</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-legal">
+        <p>&copy; <span id="footer-year"></span> Interiors x Alex. All rights reserved.</p>
+        <p><a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms">Terms of Use</a></p>
+      </div>
     </div>
-    <p class="cs-room-caption">Three seating concepts for the formal sitting room. Option A pairs a curved slate-blue sofa with boucl&#233; lounge chairs and a travertine marble coffee table. Option B introduces a geometric rug to layer the grouping. Option C pivots to a deeper navy sofa with a faceted marble stone table and dark linen armchairs.</p>
-  </div>
+  </footer>
 
-  <!-- Dining Room -->
-  <div class="cs-room">
-    <span class="cs-room-label">Dining Room</span>
-    <div class="cs-mood-grid two">
-      <img src="../assets/images/cs-edinburgh/dining-room-1.webp" alt="Dining room — walnut tulip table with crystal chandelier">
-      <img src="../assets/images/cs-edinburgh/dining-room-2.webp" alt="Dining room — travertine slab table with globe pendants">
-    </div>
-    <p class="cs-room-caption">Two direction options for the formal dining room. Direction A centers a warm walnut table with a cast-brass tulip base beneath a linear crystal chandelier, paired with upholstered dining chairs. Direction B introduces a sculptural travertine slab dining table under a swag of opalescent globe pendants in antique brass — softer, more organic.</p>
-  </div>
-
-  <!-- Kitchen -->
-  <div class="cs-room">
-    <span class="cs-room-label">Kitchen</span>
-    <div class="cs-mood-grid one">
-      <img src="../assets/images/cs-edinburgh/kitchen-materials.webp" alt="Kitchen materials — marble countertop, black and oak cabinetry, brass fixtures" style="aspect-ratio:21/9; object-fit:cover;">
-    </div>
-    <div class="cs-mood-grid two" style="margin-top:12px;">
-      <img src="../assets/images/cs-edinburgh/counter-stools-wood.webp" alt="Counter stool options — wood frame">
-      <img src="../assets/images/cs-edinburgh/counter-stools-metal.png" alt="Counter stool options — metal frame">
-    </div>
-    <div class="cs-mood-grid one" style="margin-top:12px;">
-      <img src="../assets/images/cs-edinburgh/kitchen-dining.webp" alt="Kitchen dining area — round marble table with Chandigarh-style chairs">
-    </div>
-    <p class="cs-room-caption">Matte black perimeter cabinetry pairs with blonde oak island panels and a Calacatta marble countertop throughout. Champagne bronze fixtures — a knurled pull-down faucet and articulating pot-filler — add warmth against the dark palette. Counter stool selections offer two directions: sculptural wood frames or refined blackened metal. The adjacent kitchen dining area features a round dark-marble pedestal table beneath a tiered dome pendant.</p>
-  </div>
-
-  <!-- Office -->
-  <div class="cs-room">
-    <span class="cs-room-label">Home Office</span>
-    <div class="cs-mood-grid one">
-      <img src="../assets/images/cs-edinburgh/office-mood.webp" alt="Home office — built-ins in Benjamin Moore Silhouette, dark desk and barrel chair">
-    </div>
-    <p class="cs-room-caption">The home office is anchored by floor-to-ceiling built-in shelving painted in Benjamin Moore Silhouette AF-655 — a deep warm charcoal that recedes the walls and highlights curated objects. A blackened oak console desk pairs with a barrel-back upholstered chair beneath a sculptural plaster dome pendant in antique brass.</p>
-  </div>
-
-  <!-- Kid's Bathroom -->
-  <div class="cs-room">
-    <span class="cs-room-label">Kid's Bathroom</span>
-    <div class="cs-mood-grid two">
-      <img src="../assets/images/cs-edinburgh/kids-bath-materials.webp" alt="Kid's bathroom materials — marble tile, fluted wood panel, matte black fixtures">
-      <img src="../assets/images/cs-edinburgh/kids-bath-plans.webp" alt="Kid's bathroom floor plan and elevation drawing">
-    </div>
-    <p class="cs-room-caption">A material palette of Calacatta marble wall tile, fluted blonde oak vanity panels, and honed grey stone countertop grounds this space in elevated texture. Matte black hardware, an oval pill mirror, and heated towel bar complete the look. The floor plan and elevation detail the tub-to-shower configuration with a marble mosaic floor at the wet area.</p>
-  </div>
-
-</div>
-
-<!-- ── QUOTE ── -->
-<div class="cs-quote">
-  <blockquote>"Every room should feel like it was built for the life that happens in it — not just the life you imagine."</blockquote>
-  <cite>— Alexandra Hurwitz, Interiors x Alex</cite>
-</div>
-
-<!-- ── CTA ── -->
-<div class="cs-cta">
-  <h2>Start Your Project</h2>
-  <p>Ready to transform your home? Let's talk about your vision.</p>
-  <a href="/contact" class="btn">Begin Your Inquiry</a>
-</div>
-
-<!-- ── FOOTER ── -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="footer-brand">Interiors x Alex</p>
-    <nav class="footer-nav">
-      <a href="/about">About</a>
-      <a href="/services">Services</a>
-      <a href="/portfolio">Portfolio</a>
-      <a href="/contact">Contact</a>
-    </nav>
-    <p class="footer-copy">&copy; 2025 Interiors x Alex. All rights reserved.</p>
-  </div>
-</footer>
-
-<script src="../assets/js/main.js?v=8"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
