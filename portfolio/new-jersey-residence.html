@@ -8,92 +8,205 @@
   <link rel="icon" href="../assets/images/favicon.ico">
   <link rel="stylesheet" href="../assets/css/style.css?v=8">
   <style>
-    * { font-family: 'Cormorant Garamond', 'Times New Roman', serif; }
+    * { font-family: 'Cormorant Garamond', 'Times New Roman', serif !important; }
 
+    /* HERO */
     .cs-hero {
       background: var(--es);
-      padding: 120px 24px 80px;
-      text-align: center;
+      padding: 100px 56px 80px;
     }
-    .cs-hero-title {
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      font-weight: 300;
-      color: var(--cr);
-      letter-spacing: .06em;
-      margin: 0 0 16px;
-    }
-    .cs-hero-sub {
-      font-size: 12px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--mn);
-    }
-
-    .cs-meta-bar {
-      background: var(--ow);
-      border-bottom: 1px solid var(--bl);
-      padding: 32px 24px;
-    }
-    .cs-meta-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 32px 48px;
-    }
-    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
-    .cs-meta-label {
+    .cs-hero-content { max-width: 1160px; margin: 0 auto; }
+    .cs-hero-content .eyebrow {
+      color: var(--sd);
       font-size: 10px;
       font-weight: 600;
-      letter-spacing: .2em;
+      letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--mn);
+      display: block;
+      margin-bottom: 16px;
+    }
+    .cs-hero-content h1 {
+      color: var(--ow);
+      font-size: 56px;
+      margin: 0 0 20px;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+    .cs-hero-tagline {
+      color: var(--sd);
+      font-size: 18px;
+      font-style: italic;
+      margin: 0;
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    /* META BAR */
+    .cs-meta {
+      background: var(--cr);
+      border-bottom: 1px solid var(--bl);
+    }
+    .cs-meta-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 56px;
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .cs-meta-item {
+      padding: 24px 0;
+      border-right: 1px solid var(--bl);
+      padding-right: 48px;
+    }
+    .cs-meta-item:last-child { border-right: none; }
+    .cs-meta-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--sd);
+      margin-bottom: 4px;
     }
     .cs-meta-value {
-      font-size: 16px;
+      font-size: 14px;
       color: var(--es);
     }
 
-    .cs-slides {
-      max-width: 1100px;
+    /* INTRO */
+    .cs-intro {
+      background: var(--ow);
+      padding: 80px 0;
+    }
+    .cs-intro-grid {
+      max-width: 1160px;
       margin: 0 auto;
-      padding: 48px 24px 80px;
+      padding: 0 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .cs-intro-text h2 { margin-top: 10px; }
+    .cs-intro-text p { margin-top: 16px; line-height: 1.75; color: var(--mn); }
+    .cs-scope-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .cs-scope-list li {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--es);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--bl);
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .cs-scope-list li::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--sd);
+      flex-shrink: 0;
+    }
+
+    /* PALETTE */
+    .cs-palette {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .cs-swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--bl);
+    }
+    .cs-palette-note {
+      margin-top: 10px;
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: var(--mn);
+    }
+
+    /* ROOM SECTIONS */
+    .cs-rooms {
+      background: var(--cr);
+      padding: 88px 0;
+    }
+    .cs-room {
+      max-width: 1160px;
+      margin: 0 auto 88px;
+      padding: 0 56px;
+    }
+    .cs-room:last-child { margin-bottom: 0; }
+    .cs-room-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sd);
+      margin-bottom: 12px;
+    }
+    .cs-room h3 {
+      font-size: 28px;
+      margin: 0 0 32px;
+      color: var(--es);
+    }
+
+    /* IMAGE GRIDS */
+    .cs-img-grid {
+      display: grid;
       gap: 12px;
     }
-    .cs-slides img {
+    .cs-img-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .cs-img-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .cs-img-grid.wide-left { grid-template-columns: 3fr 2fr; }
+    .cs-img-grid img,
+    .cs-img-full img {
       width: 100%;
       height: auto;
       display: block;
     }
+    .cs-img-full img { width: 100%; height: auto; display: block; }
 
+    /* DIVIDER */
+    .cs-divider {
+      max-width: 1160px;
+      margin: 0 auto 88px;
+      padding: 0 56px;
+      border: none;
+      border-top: 1px solid var(--bl);
+    }
+
+    /* CTA */
     .cs-cta {
-      background: var(--es);
-      padding: 80px 24px;
+      background: var(--ow);
+      padding: 88px 56px;
       text-align: center;
     }
-    .cs-cta h2 {
-      font-family: var(--ff-serif);
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 300;
-      color: var(--cr);
-      letter-spacing: .06em;
-      margin: 0 0 32px;
+    .cs-cta h2 { margin-top: 10px; }
+    .cs-cta p { margin: 16px auto 32px; max-width: 480px; color: var(--mn); line-height: 1.7; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .cs-hero { padding: 72px 24px 56px; }
+      .cs-hero-content h1 { font-size: 36px; }
+      .cs-meta-inner { padding: 0 24px; gap: 0; flex-direction: column; }
+      .cs-meta-item { border-right: none; border-bottom: 1px solid var(--bl); padding-right: 0; }
+      .cs-intro-grid { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+      .cs-room { padding: 0 24px; }
+      .cs-img-grid.cols-2,
+      .cs-img-grid.cols-3,
+      .cs-img-grid.wide-left { grid-template-columns: 1fr; }
+      .cs-cta { padding: 56px 24px; }
     }
-    .cs-cta .btn {
-      display: inline-block;
-      padding: 14px 36px;
-      border: 1px solid var(--cr);
-      color: var(--cr);
-      font-family: var(--ff-sans);
-      font-size: 11px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background .2s, color .2s;
-    }
-    .cs-cta .btn:hover { background: var(--cr); color: var(--es); }
   </style>
 </head>
 <body>
@@ -117,63 +230,213 @@
 
 <!-- HERO -->
 <section class="cs-hero">
-  <h1 class="cs-hero-title">New Jersey Residence</h1>
-  <p class="cs-hero-sub">Full-Home Renovation &nbsp;·&nbsp; Design Concept</p>
+  <div class="cs-hero-content">
+    <span class="eyebrow">Case Study</span>
+    <h1>New Jersey Residence</h1>
+    <p class="cs-hero-tagline">A full-home renovation centered on open-concept living, custom millwork, and a warm neutral palette throughout.</p>
+  </div>
 </section>
 
 <!-- META BAR -->
-<div class="cs-meta-bar">
+<div class="cs-meta">
   <div class="cs-meta-inner">
     <div class="cs-meta-item">
-      <span class="cs-meta-label">Location</span>
-      <span class="cs-meta-value">New Jersey</span>
+      <p class="cs-meta-label">Location</p>
+      <p class="cs-meta-value">New Jersey</p>
     </div>
     <div class="cs-meta-item">
-      <span class="cs-meta-label">Project Type</span>
-      <span class="cs-meta-value">Full-Home Renovation</span>
+      <p class="cs-meta-label">Project Type</p>
+      <p class="cs-meta-value">Full-Home Renovation</p>
     </div>
     <div class="cs-meta-item">
-      <span class="cs-meta-label">Scope</span>
-      <span class="cs-meta-value">Entire Home</span>
+      <p class="cs-meta-label">Style</p>
+      <p class="cs-meta-value">Transitional · Warm Neutral</p>
     </div>
     <div class="cs-meta-item">
-      <span class="cs-meta-label">Style</span>
-      <span class="cs-meta-value">Transitional · Warm Neutral</span>
+      <p class="cs-meta-label">Rooms</p>
+      <p class="cs-meta-value">Eight Spaces</p>
     </div>
   </div>
 </div>
 
-<!-- ALL SLIDES IN ORDER -->
-<div class="cs-slides">
-  <img src="../assets/images/cs-nj/1.png"  alt="Staircase reference">
-  <img src="../assets/images/cs-nj/2.png"  alt="Plan overview">
-  <img src="../assets/images/cs-nj/3.png"  alt="Customer requests">
-  <img src="../assets/images/cs-nj/4.png"  alt="Overall mood board">
-  <img src="../assets/images/cs-nj/5.png"  alt="Mood board">
-  <img src="../assets/images/cs-nj/6.png"  alt="Materials palette">
-  <img src="../assets/images/cs-nj/7.png"  alt="Foyer staircase inspiration">
-  <img src="../assets/images/cs-nj/8.png"  alt="Foyer inspiration">
-  <img src="../assets/images/cs-nj/9.png"  alt="Wainscoting and molding">
-  <img src="../assets/images/cs-nj/10.png" alt="Chandelier options">
-  <img src="../assets/images/cs-nj/11.png" alt="Chandelier options">
-  <img src="../assets/images/cs-nj/12.png" alt="Hallway lighting">
-  <img src="../assets/images/cs-nj/13.png" alt="Dining room inspiration">
-  <img src="../assets/images/cs-nj/14.png" alt="Kitchen inspiration">
-  <img src="../assets/images/cs-nj/15.png" alt="Wine wall and butler's pantry">
-  <img src="../assets/images/cs-nj/16.png" alt="Breakfast nook">
-  <img src="../assets/images/cs-nj/17.png" alt="Living room inspiration">
-  <img src="../assets/images/cs-nj/18.png" alt="Living room built-ins">
-  <img src="../assets/images/cs-nj/19.png" alt="Bath vanity inspiration">
-  <img src="../assets/images/cs-nj/20.png" alt="Master bedroom">
-  <img src="../assets/images/cs-nj/21.png" alt="Master bath">
-  <img src="../assets/images/cs-nj/22.png" alt="Master bath details">
-  <img src="../assets/images/cs-nj/23.png" alt="Guest bath shower">
-  <img src="../assets/images/cs-nj/24.png" alt="Playroom">
-</div>
+<!-- INTRO -->
+<section class="cs-intro">
+  <div class="cs-intro-grid">
+    <div class="cs-intro-text">
+      <span class="eyebrow">The Project</span>
+      <h2>Refined from the Ground Up</h2>
+      <p>This full-home renovation was designed around a clear vision: open-concept flow, whites and neutrals, natural textures, and architectural detail that carries throughout every room. Custom molding and wainscoting tie the foyer, dining room, hallways, and living spaces together, while new hardwood flooring runs seamlessly from entry to master suite.</p>
+      <p>The kitchen received a complete redesign — personalized cabinetry, a butler's pantry, and considered hardware details. Both bathrooms were fully remodeled with Calacatta marble and brass fixtures. Built-ins anchor the living room and playrooms, and a custom walk-in closet was added to the primary suite.</p>
+      <div class="cs-palette">
+        <span class="cs-swatch" style="background:#f5f0eb;"></span>
+        <span class="cs-swatch" style="background:#e8ddd0;"></span>
+        <span class="cs-swatch" style="background:#c9b89a;"></span>
+        <span class="cs-swatch" style="background:#a89278;"></span>
+        <span class="cs-swatch" style="background:#c8c4b8;"></span>
+        <span class="cs-swatch" style="background:#b8a898;"></span>
+      </div>
+      <p class="cs-palette-note">Cream · Linen · Sand · Warm Taupe · Stone · Blush Neutral</p>
+    </div>
+    <div>
+      <span class="eyebrow">Scope of Work</span>
+      <ul class="cs-scope-list" style="margin-top:10px;">
+        <li>Foyer &amp; Staircase Redesign</li>
+        <li>Custom Molding &amp; Wainscoting Throughout</li>
+        <li>Hardwood Flooring Whole-Home</li>
+        <li>Full Kitchen Renovation</li>
+        <li>Butler's Pantry &amp; Wine Wall</li>
+        <li>Living Room Built-Ins &amp; Coffered Ceiling</li>
+        <li>Dining Room Finish Moldings</li>
+        <li>Playroom Design &amp; Built-Ins</li>
+        <li>Master Bath Complete Remodel</li>
+        <li>Guest Bath Complete Remodel</li>
+        <li>Custom Walk-In Closet — Primary Suite</li>
+        <li>Organization Systems Throughout</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ROOM SECTIONS -->
+<section class="cs-rooms">
+
+  <!-- OVERALL MOOD -->
+  <div class="cs-room">
+    <p class="cs-room-label">01 — Overall Vision</p>
+    <h3>The Mood</h3>
+    <div class="cs-img-grid cols-2">
+      <img src="../assets/images/cs-nj/4.png" alt="Overall mood board">
+      <img src="../assets/images/cs-nj/5.png" alt="Overall mood board">
+    </div>
+  </div>
+
+  <hr class="cs-divider">
+
+  <!-- MATERIALS -->
+  <div class="cs-room">
+    <p class="cs-room-label">02 — Materials &amp; Palette</p>
+    <h3>The Foundation</h3>
+    <div class="cs-img-full">
+      <img src="../assets/images/cs-nj/6.png" alt="Materials board — oak floor, Calacatta marble, fluted molding, brass">
+    </div>
+  </div>
+
+  <hr class="cs-divider">
+
+  <!-- FOYER & STAIRCASE -->
+  <div class="cs-room">
+    <p class="cs-room-label">03 — Foyer &amp; Staircase</p>
+    <h3>The Grand Entrance</h3>
+    <div class="cs-img-grid cols-2" style="margin-bottom:12px;">
+      <img src="../assets/images/cs-nj/1.png" alt="Staircase reference">
+      <img src="../assets/images/cs-nj/7.png" alt="Foyer staircase inspiration">
+    </div>
+    <div class="cs-img-grid cols-2">
+      <img src="../assets/images/cs-nj/8.png" alt="Foyer arched doorway inspiration">
+      <img src="../assets/images/cs-nj/9.png" alt="Wainscoting and molding inspiration">
+    </div>
+  </div>
+
+  <hr class="cs-divider">
+
+  <!-- LIGHTING -->
+  <div class="cs-room">
+    <p class="cs-room-label">04 — Lighting</p>
+    <h3>Finishing Details</h3>
+    <div class="cs-img-grid cols-2" style="margin-bottom:12px;">
+      <img src="../assets/images/cs-nj/10.png" alt="Chandelier options">
+      <img src="../assets/images/cs-nj/11.png" alt="Chandelier options">
+    </div>
+    <div class="cs-img-full">
+      <img src="../assets/images/cs-nj/12.png" alt="Hallway and staircase lighting">
+    </div>
+  </div>
+
+  <hr class="cs-divider">
+
+  <!-- DINING ROOM -->
+  <div class="cs-room">
+    <p class="cs-room-label">05 — Dining Room</p>
+    <h3>Elevated Gathering</h3>
+    <div class="cs-img-full">
+      <img src="../assets/images/cs-nj/13.png" alt="Dining room inspiration">
+    </div>
+  </div>
+
+  <hr class="cs-divider">
+
+  <!-- KITCHEN -->
+  <div class="cs-room">
+    <p class="cs-room-label">06 — Kitchen</p>
+    <h3>The Heart of the Home</h3>
+    <div class="cs-img-full" style="margin-bottom:12px;">
+      <img src="../assets/images/cs-nj/14.png" alt="Kitchen inspiration">
+    </div>
+    <div class="cs-img-grid cols-2">
+      <img src="../assets/images/cs-nj/15.png" alt="Wine wall and butler's pantry">
+      <img src="../assets/images/cs-nj/16.png" alt="Breakfast nook">
+    </div>
+  </div>
+
+  <hr class="cs-divider">
+
+  <!-- LIVING ROOM -->
+  <div class="cs-room">
+    <p class="cs-room-label">07 — Living Room</p>
+    <h3>Open &amp; Layered</h3>
+    <div class="cs-img-full" style="margin-bottom:12px;">
+      <img src="../assets/images/cs-nj/17.png" alt="Living room inspiration">
+    </div>
+    <div class="cs-img-full">
+      <img src="../assets/images/cs-nj/18.png" alt="Living room built-ins and fireplace">
+    </div>
+  </div>
+
+  <hr class="cs-divider">
+
+  <!-- MASTER SUITE -->
+  <div class="cs-room">
+    <p class="cs-room-label">08 — Master Suite</p>
+    <h3>A Quiet Retreat</h3>
+    <div class="cs-img-full" style="margin-bottom:12px;">
+      <img src="../assets/images/cs-nj/20.png" alt="Master bedroom inspiration">
+    </div>
+    <div class="cs-img-grid cols-2">
+      <img src="../assets/images/cs-nj/21.png" alt="Master bath — double vanity and marble shower">
+      <img src="../assets/images/cs-nj/22.png" alt="Master bath — soaking tub and glass shower">
+    </div>
+  </div>
+
+  <hr class="cs-divider">
+
+  <!-- GUEST BATH -->
+  <div class="cs-room">
+    <p class="cs-room-label">09 — Guest Bath</p>
+    <h3>Spa-Inspired</h3>
+    <div class="cs-img-grid cols-2">
+      <img src="../assets/images/cs-nj/19.png" alt="Guest bath vanity and fixture inspiration">
+      <img src="../assets/images/cs-nj/23.png" alt="Guest bath shower inspiration">
+    </div>
+  </div>
+
+  <hr class="cs-divider">
+
+  <!-- PLAYROOM -->
+  <div class="cs-room">
+    <p class="cs-room-label">10 — Playroom</p>
+    <h3>Made for Play</h3>
+    <div class="cs-img-full">
+      <img src="../assets/images/cs-nj/24.png" alt="Playroom inspiration">
+    </div>
+  </div>
+
+</section>
 
 <!-- CTA -->
 <section class="cs-cta">
-  <h2>Start Your Project</h2>
+  <span class="eyebrow">Start a Project</span>
+  <h2>Ready to Design Your Space?</h2>
+  <p>Whether you're starting from scratch or refining what you have, Alexandra brings a considered eye and a clear process to every project.</p>
   <a href="/contact" class="btn">Get in Touch</a>
 </section>
 
@@ -196,5 +459,6 @@
   </div>
 </footer>
 
+<script src="../assets/js/main.js"></script>
 </body>
 </html>
