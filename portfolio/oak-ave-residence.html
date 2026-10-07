@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historic New Jersey Colonial | Case Study | Interiors x Alex</title>
+  <meta name="description" content="A living room redesign for a historic New Jersey Colonial — balancing the home's traditional architecture with warm, layered furnishings and a refined new palette.">
+  <link rel="icon" href="../assets/images/favicon.ico">
+  <link rel="stylesheet" href="../assets/css/style.css?v=8">
+  <style>
+    * { font-family: 'Cormorant Garamond', 'Times New Roman', serif !important; }
+    .cs-meta-value { font-size: 16px; font-weight: 400; }
+    .cs-scope-list li { font-size: 13px; letter-spacing: .08em; }
+
+    /* ── HERO ── */
+    .cs-hero {
+      background: var(--es);
+      padding: 56px 56px 56px;
+    }
+    .cs-hero-content {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .cs-hero-content .eyebrow {
+      color: var(--sd);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .cs-hero-content h1 {
+      color: var(--ow);
+      font-size: 56px;
+      margin: 0 0 20px;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+    .cs-hero-tagline {
+      color: var(--sd);
+      font-size: 18px;
+      font-style: italic;
+      margin: 0;
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    /* ── META BAR ── */
+    .cs-meta {
+      background: var(--cr);
+      border-bottom: 1px solid var(--bl);
+    }
+    .cs-meta-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 56px;
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .cs-meta-item {
+      padding: 24px 0;
+      border-right: 1px solid var(--bl);
+      padding-right: 48px;
+    }
+    .cs-meta-item:last-child { border-right: none; }
+    .cs-meta-label {
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--sd);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .cs-meta-value {
+      font-size: 14px;
+      color: var(--es);
+    }
+
+    /* ── INTRO ── */
+    .cs-intro {
+      background: var(--ow);
+      padding: 80px 0;
+    }
+    .cs-intro-grid {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .cs-intro-text h2 { margin-top: 10px; }
+    .cs-intro-text p { margin-top: 16px; line-height: 1.75; color: var(--mn); }
+    .cs-scope-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .cs-scope-list li {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--es);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--bl);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cs-scope-list li::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--sd);
+      flex-shrink: 0;
+    }
+
+    /* ── PALETTE ── */
+    .cs-palette {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .cs-swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--bl);
+    }
+    .cs-palette-note {
+      margin-top: 10px;
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: var(--mn);
+    }
+
+    /* ── ROOM SECTIONS ── */
+    .cs-rooms {
+      background: var(--cr);
+      padding: 88px 0;
+    }
+    .cs-room {
+      max-width: 1160px;
+      margin: 0 auto 88px;
+      padding: 0 56px;
+    }
+    .cs-room:last-child { margin-bottom: 0; }
+    .cs-room-label {
+      font-size: 9px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sd);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .cs-room h3 {
+      font-size: 28px;
+      margin: 0 0 32px;
+      color: var(--es);
+    }
+
+    /* ── IMAGE GRIDS ── */
+    .cs-img-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .cs-img-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .cs-img-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .cs-img-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .cs-img-grid.wide-left { grid-template-columns: 3fr 2fr; }
+    .cs-img-grid.wide-right { grid-template-columns: 2fr 3fr; }
+    .cs-img-grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .cs-img-full img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── DIVIDER ── */
+    .cs-divider {
+      max-width: 1160px;
+      margin: 0 auto 88px;
+      padding: 0 56px;
+      border: none;
+      border-top: 1px solid var(--bl);
+    }
+
+    /* ── CTA ── */
+    .cs-cta {
+      background: var(--ow);
+      padding: 88px 56px;
+      text-align: center;
+    }
+    .cs-cta h2 { margin-top: 10px; }
+    .cs-cta p { margin: 16px auto 32px; max-width: 480px; color: var(--mn); line-height: 1.7; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .cs-hero { padding: 72px 24px 56px; }
+      .cs-hero-content h1 { font-size: 36px; }
+      .cs-meta-inner { padding: 0 24px; gap: 0; flex-direction: column; }
+      .cs-meta-item { border-right: none; border-bottom: 1px solid var(--bl); padding-right: 0; }
+      .cs-intro-grid { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+      .cs-room { padding: 0 24px; }
+      .cs-img-grid.cols-2,
+      .cs-img-grid.cols-3,
+      .cs-img-grid.cols-4,
+      .cs-img-grid.wide-left,
+      .cs-img-grid.wide-right { grid-template-columns: 1fr; }
+      .cs-cta { padding: 56px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <ul class="nav-links left">
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Services</a></li>
+      </ul>
+      <a href="/" class="nav-logo-wrap">
+        <img class="nav-logo" src="../assets/images/logo.png" alt="Interiors x Alex">
+      </a>
+      <ul class="nav-links right">
+        <li><a href="/portfolio" class="active">Portfolio</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="cs-hero-content">
+      <span class="eyebrow">Case Study</span>
+      <h1>Historic New Jersey Colonial</h1>
+      <p class="cs-hero-tagline">Honoring the architecture while breathing new life into a storied living room.</p>
+    </div>
+  </section>
+
+  <!-- META BAR -->
+  <div class="cs-meta">
+    <div class="cs-meta-inner">
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Location</p>
+        <p class="cs-meta-value">New Jersey</p>
+      </div>
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Scope</p>
+        <p class="cs-meta-value">Living Room Design</p>
+      </div>
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Style</p>
+        <p class="cs-meta-value">Traditional · Transitional</p>
+      </div>
+      <div class="cs-meta-item">
+        <p class="cs-meta-label">Focus</p>
+        <p class="cs-meta-value">Furniture &amp; Color</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="cs-intro">
+    <div class="cs-intro-grid">
+      <div class="cs-intro-text">
+        <span class="eyebrow">The Project</span>
+        <h2>A Room Worth Coming Back To</h2>
+        <p>This historic Colonial presented a compelling design challenge: the original architecture — dark wood wainscoting, stained glass transoms, and high ceilings — demanded to be respected, not erased. The goal was a living room that felt genuinely transformed while still belonging to the house.</p>
+        <p>Two paint directions were explored: Sherwin-Williams Frosted Fern, a soft sage that reads as fresh and botanical, and Storm Cloud, a sophisticated mid-tone grey with blue undertones. Both were evaluated against the home's signature floral rug, which anchors the entire palette. Furniture selections lean traditional in silhouette — tufted wingbacks, velvet sofas, skirted chairs — but are curated with a restraint that keeps the room from tipping into period pastiche.</p>
+        <div class="cs-palette">
+          <span class="cs-swatch" style="background:#8fa68e;"></span>
+          <span class="cs-swatch" style="background:#7a8fa0;"></span>
+          <span class="cs-swatch" style="background:#7a5c3a;"></span>
+          <span class="cs-swatch" style="background:#e8dfd0;"></span>
+          <span class="cs-swatch" style="background:#3a2c1e;"></span>
+        </div>
+        <p class="cs-palette-note">Frosted Fern · Storm Cloud · Cognac · Cream · Espresso</p>
+      </div>
+      <div>
+        <span class="eyebrow">Scope of Work</span>
+        <ul class="cs-scope-list" style="margin-top:10px;">
+          <li>Paint Color Selection &amp; Specification</li>
+          <li>Sofa &amp; Seating Selection</li>
+          <li>Wingback &amp; Accent Chair Curation</li>
+          <li>Coffee Table &amp; Ottoman Options</li>
+          <li>Lighting Selection</li>
+          <li>Space Planning &amp; Floor Plan Options</li>
+          <li>Materials &amp; Textile Coordination</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOM SECTIONS -->
+  <section class="cs-rooms">
+
+    <!-- INSPIRATION -->
+    <div class="cs-room">
+      <p class="cs-room-label">01 — Inspiration</p>
+      <h3>Traditional With Intention</h3>
+      <div class="cs-img-grid cols-2" style="margin-bottom:12px;">
+        <img src="../assets/images/cs-oak/1.png"
+             alt="Inspiration — traditional foyer with dark wood and staircase">
+        <img src="../assets/images/cs-oak/2.png"
+             alt="Inspiration — layered traditional living room with warm textiles">
+      </div>
+      <div class="cs-img-grid cols-2">
+        <img src="../assets/images/cs-oak/10.png"
+             alt="Inspiration — classic living room with wallpaper and upholstered seating">
+        <img src="../assets/images/cs-oak/11.png"
+             alt="Inspiration — traditional foyer with arched entry and floral wallpaper">
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- EXISTING SPACE -->
+    <div class="cs-room">
+      <p class="cs-room-label">02 — The Existing Space</p>
+      <h3>Where It Started</h3>
+      <div class="cs-img-grid cols-3">
+        <img src="../assets/images/cs-oak/5.png"
+             alt="Existing foyer with stained glass transom and original dark wood wainscoting">
+        <img src="../assets/images/cs-oak/7.png"
+             alt="Living room during paint testing phase — walls in transition">
+        <img src="../assets/images/cs-oak/9.png"
+             alt="Living room with original blue walls and floral wallpaper ceiling">
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- COLOR & MATERIALS -->
+    <div class="cs-room">
+      <p class="cs-room-label">03 — Color &amp; Materials</p>
+      <h3>Two Directions, One Rug</h3>
+      <div class="cs-img-full" style="margin-bottom:12px;">
+        <img src="../assets/images/cs-oak/4.png"
+             alt="Materials board — plaster finish and the signature floral rug">
+      </div>
+      <div class="cs-img-grid cols-2">
+        <img src="../assets/images/cs-oak/6.png"
+             alt="Color option A — floral rug with Frosted Fern SW9648 paint chip">
+        <img src="../assets/images/cs-oak/8.png"
+             alt="Color option B — floral rug with Storm Cloud SW6249 paint chip">
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- THE VISION -->
+    <div class="cs-room">
+      <p class="cs-room-label">04 — The Vision</p>
+      <h3>Mood &amp; Setting</h3>
+      <div class="cs-img-full">
+        <img src="../assets/images/cs-oak/3.png"
+             alt="Living room mood board — brown velvet sofa, wingback chair, brass chandelier, floral rug">
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- SOFAS -->
+    <div class="cs-room">
+      <p class="cs-room-label">05 — Sofas</p>
+      <h3>Velvet &amp; Volume</h3>
+      <div class="cs-img-grid cols-2">
+        <img src="../assets/images/cs-oak/12.png"
+             alt="Sofa options — multiple brown velvet sofas, traditional roll arm and track arm silhouettes">
+        <img src="../assets/images/cs-oak/13.png"
+             alt="Additional sofa options — cognac and deep brown upholstered seating">
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- SEATING -->
+    <div class="cs-room">
+      <p class="cs-room-label">06 — Accent Seating</p>
+      <h3>Character in Every Chair</h3>
+      <div class="cs-img-grid cols-2" style="margin-bottom:12px;">
+        <img src="../assets/images/cs-oak/14.png"
+             alt="Chair options — barrel, tufted, and skirted accent chairs">
+        <img src="../assets/images/cs-oak/17.png"
+             alt="Wingback chair options upholstered in damask fabric">
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- TABLES & LIGHTING -->
+    <div class="cs-room">
+      <p class="cs-room-label">07 — Tables &amp; Lighting</p>
+      <h3>Finishing the Room</h3>
+      <div class="cs-img-grid cols-2">
+        <img src="../assets/images/cs-oak/15.png"
+             alt="Coffee table and ottoman options — upholstered, carved wood, and metal tray styles">
+        <img src="../assets/images/cs-oak/16.png"
+             alt="Lighting options — four glass and brass pendant and chandelier fixtures">
+      </div>
+    </div>
+
+    <hr class="cs-divider">
+
+    <!-- FLOOR PLANS -->
+    <div class="cs-room">
+      <p class="cs-room-label">08 — Floor Plans</p>
+      <h3>Three Layouts, One Room</h3>
+      <div class="cs-img-grid cols-3">
+        <img src="../assets/images/cs-oak/18.png"
+             alt="Floor plan option 1 — furniture arrangement with sofa facing fireplace">
+        <img src="../assets/images/cs-oak/19.png"
+             alt="Floor plan option 2 — alternate furniture arrangement">
+        <img src="../assets/images/cs-oak/20.png"
+             alt="Floor plan option 3 — third furniture arrangement with conversation grouping">
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <section class="cs-cta">
+    <span class="eyebrow">Start a Project</span>
+    <h2>Ready to Design Your Space?</h2>
+    <p>Whether you're starting from scratch or refining what you have, Alexandra brings a considered eye and a clear process to every project.</p>
+    <a href="/contact" class="btn">Get in Touch</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="../assets/images/logo.png" alt="Interiors x Alex">
+      </div>
+      <nav class="footer-nav">
+        <a href="/about">About</a>
+        <a href="/services">Services</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/interiorsxalex" target="_blank" rel="noopener">@interiorsxalex</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Interiors x Alex. All rights reserved. | <a href="/privacy" style="text-decoration:underline;">Privacy Policy</a> | <a href="/terms" style="text-decoration:underline;">Terms of Use</a></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

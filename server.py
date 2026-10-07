@@ -64,6 +64,10 @@ def case_study_nj():
 def case_study_edinburgh():
     return send_from_directory('portfolio', 'edinburgh-residence.html')
 
+@app.route('/portfolio/historic-nj-colonial')
+def case_study_oak():
+    return send_from_directory('portfolio', 'oak-ave-residence.html')
+
 @app.route('/contact')
 def contact_page():
     return send_from_directory('.', 'contact.html')
