@@ -8,28 +8,6 @@
   <link rel="icon" href="../assets/images/favicon.ico">
   <link rel="stylesheet" href="../assets/css/style.css?v=8">
   <style>
-    .cs-meta-value,
-    .cs-intro-text p,
-    .cs-scope-list li,
-    .cs-palette-note,
-    .cs-room-label,
-    .cs-quote blockquote,
-    .cs-quote cite,
-    .cs-cta p {
-      font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-    }
-    .cs-meta-label,
-    .cs-room-label,
-    .cs-scope-list li,
-    .cs-palette-note,
-    .cs-quote cite {
-      font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-      letter-spacing: .14em;
-    }
-    .cs-meta-value { font-size: 16px; font-weight: 400; }
-    .cs-scope-list li { font-size: 13px; letter-spacing: .08em; }
-
-    /* HERO */
     .cs-hero {
       background: var(--es);
       padding: 120px 24px 80px;
@@ -51,7 +29,6 @@
       color: var(--mn);
     }
 
-    /* META BAR */
     .cs-meta-bar {
       background: var(--ow);
       border-bottom: 1px solid var(--bl);
@@ -72,145 +49,26 @@
       text-transform: uppercase;
       color: var(--mn);
     }
-    .cs-meta-value { color: var(--es); }
-
-    /* INTRO */
-    .cs-intro {
-      max-width: 760px;
-      margin: 72px auto;
-      padding: 0 24px;
-      text-align: center;
-    }
-    .cs-intro-label {
-      font-family: var(--ff-sans);
-      font-size: 10px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--mn);
-      margin-bottom: 24px;
-    }
-    .cs-intro-text p {
-      font-size: 18px;
-      line-height: 1.75;
-      color: var(--es);
-      margin: 0 0 1em;
-    }
-
-    /* SCOPE */
-    .cs-scope {
-      background: var(--ow);
-      border-top: 1px solid var(--bl);
-      border-bottom: 1px solid var(--bl);
-      padding: 56px 24px;
-    }
-    .cs-scope-inner {
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    .cs-scope-heading {
-      font-family: var(--ff-sans);
-      font-size: 10px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--mn);
-      margin-bottom: 28px;
-    }
-    .cs-scope-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px 48px;
-    }
-    .cs-scope-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .cs-scope-list li {
-      padding: 6px 0;
-      border-bottom: 1px solid var(--bl);
-      color: var(--es);
-    }
-    .cs-scope-list li::before {
-      content: '—  ';
-      color: var(--mn);
-    }
-
-    /* SECTIONS */
-    .cs-section {
-      max-width: 1100px;
-      margin: 80px auto;
-      padding: 0 24px;
-    }
-    .cs-section-header {
-      margin-bottom: 36px;
-    }
-    .cs-room-label {
-      font-family: var(--ff-sans);
-      font-size: 10px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--mn);
-      margin-bottom: 10px;
-    }
-    .cs-room-title {
-      font-family: var(--ff-serif);
-      font-size: clamp(1.5rem, 3vw, 2.4rem);
-      font-weight: 300;
-      color: var(--es);
-      letter-spacing: .04em;
-      margin: 0 0 12px;
-    }
-    .cs-room-desc {
+    .cs-meta-value {
       font-family: 'Cormorant Garamond', serif;
       font-size: 16px;
-      line-height: 1.7;
       color: var(--es);
-      max-width: 680px;
-    }
-    .cs-divider {
-      border: none;
-      border-top: 1px solid var(--bl);
-      margin: 0 24px;
     }
 
-    /* IMAGE GRIDS */
-    .cs-img-grid {
-      display: grid;
+    .cs-slides {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      display: flex;
+      flex-direction: column;
       gap: 12px;
     }
-    .cs-img-grid.cols-2 { grid-template-columns: 1fr 1fr; }
-    .cs-img-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-    .cs-img-grid.wide-left { grid-template-columns: 3fr 2fr; }
-    .cs-img-full { width: 100%; }
-    .cs-img-grid img,
-    .cs-img-full {
+    .cs-slides img {
       width: 100%;
       height: auto;
       display: block;
     }
 
-    /* QUOTE */
-    .cs-quote {
-      max-width: 680px;
-      margin: 64px auto;
-      padding: 0 24px;
-      text-align: center;
-    }
-    .cs-quote blockquote {
-      font-size: 22px;
-      font-style: italic;
-      line-height: 1.65;
-      color: var(--es);
-      margin: 0 0 16px;
-    }
-    .cs-quote cite {
-      font-size: 11px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--mn);
-    }
-
-    /* CTA */
     .cs-cta {
       background: var(--es);
       padding: 80px 24px;
@@ -222,11 +80,6 @@
       font-weight: 300;
       color: var(--cr);
       letter-spacing: .06em;
-      margin: 0 0 16px;
-    }
-    .cs-cta p {
-      font-size: 16px;
-      color: var(--mn);
       margin: 0 0 32px;
     }
     .cs-cta .btn {
@@ -242,13 +95,6 @@
       transition: background .2s, color .2s;
     }
     .cs-cta .btn:hover { background: var(--cr); color: var(--es); }
-
-    @media (max-width: 680px) {
-      .cs-img-grid.cols-2,
-      .cs-img-grid.cols-3,
-      .cs-img-grid.wide-left { grid-template-columns: 1fr; }
-      .cs-scope-cols { grid-template-columns: 1fr; }
-    }
   </style>
 </head>
 <body>
@@ -298,173 +144,37 @@
   </div>
 </div>
 
-<!-- INTRO -->
-<div class="cs-intro">
-  <p class="cs-intro-label">Project Overview</p>
-  <div class="cs-intro-text">
-    <p>This full-home renovation concept was designed around one clear intention: transform a dated interior into a cohesive, elevated residence that feels both timeless and deeply livable. Every room was approached holistically — from the foyer's curved staircase to the master bath's Calacatta marble — with a palette rooted in whites, warm neutrals, and natural textures throughout.</p>
-    <p>The client's vision centered on open-concept flow, custom millwork and molding, and a complete kitchen redesign with a wine wall and butler's pantry. The result is a home that balances architectural detail with material warmth.</p>
-  </div>
+<!-- ALL SLIDES IN ORDER -->
+<div class="cs-slides">
+  <img src="../assets/images/cs-nj/1.png"  alt="Staircase reference">
+  <img src="../assets/images/cs-nj/2.png"  alt="Plan overview">
+  <img src="../assets/images/cs-nj/3.png"  alt="Customer requests">
+  <img src="../assets/images/cs-nj/4.png"  alt="Overall mood board">
+  <img src="../assets/images/cs-nj/5.png"  alt="Mood board">
+  <img src="../assets/images/cs-nj/6.png"  alt="Materials palette">
+  <img src="../assets/images/cs-nj/7.png"  alt="Foyer staircase inspiration">
+  <img src="../assets/images/cs-nj/8.png"  alt="Foyer inspiration">
+  <img src="../assets/images/cs-nj/9.png"  alt="Wainscoting and molding">
+  <img src="../assets/images/cs-nj/10.png" alt="Chandelier options">
+  <img src="../assets/images/cs-nj/11.png" alt="Chandelier options">
+  <img src="../assets/images/cs-nj/12.png" alt="Hallway lighting">
+  <img src="../assets/images/cs-nj/13.png" alt="Dining room inspiration">
+  <img src="../assets/images/cs-nj/14.png" alt="Kitchen inspiration">
+  <img src="../assets/images/cs-nj/15.png" alt="Wine wall and butler's pantry">
+  <img src="../assets/images/cs-nj/16.png" alt="Breakfast nook">
+  <img src="../assets/images/cs-nj/17.png" alt="Living room inspiration">
+  <img src="../assets/images/cs-nj/18.png" alt="Living room built-ins">
+  <img src="../assets/images/cs-nj/19.png" alt="Bath vanity inspiration">
+  <img src="../assets/images/cs-nj/20.png" alt="Master bedroom">
+  <img src="../assets/images/cs-nj/21.png" alt="Master bath">
+  <img src="../assets/images/cs-nj/22.png" alt="Master bath details">
+  <img src="../assets/images/cs-nj/23.png" alt="Guest bath shower">
+  <img src="../assets/images/cs-nj/24.png" alt="Playroom">
 </div>
-
-<!-- SCOPE OF WORK -->
-<div class="cs-scope">
-  <div class="cs-scope-inner">
-    <p class="cs-scope-heading">Scope of Work</p>
-    <div class="cs-scope-cols">
-      <ul class="cs-scope-list">
-        <li>Foyer &amp; Staircase redesign</li>
-        <li>Full kitchen renovation</li>
-        <li>Wine wall &amp; butler's pantry</li>
-        <li>Dining room concept</li>
-        <li>Living room with custom built-ins</li>
-        <li>Breakfast / dining nook</li>
-      </ul>
-      <ul class="cs-scope-list">
-        <li>Playroom design</li>
-        <li>Master bedroom suite</li>
-        <li>Master bath renovation</li>
-        <li>Guest bath renovation</li>
-        <li>Wainscoting &amp; custom molding throughout</li>
-        <li>Hardwood flooring whole-home</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- MATERIALS -->
-<section class="cs-section">
-  <div class="cs-section-header">
-    <p class="cs-room-label">Materials &amp; Palette</p>
-    <h2 class="cs-room-title">The Foundation</h2>
-    <p class="cs-room-desc">White oak flooring, Calacatta Gold marble, fluted white molding, gray stone, and warm brass finishes establish a cohesive material language across every room.</p>
-  </div>
-  <img src="../assets/images/cs-nj/6.png" alt="Materials board — oak floor, Calacatta marble, fluted molding" class="cs-img-full">
-</section>
-
-<hr class="cs-divider">
-
-<!-- FOYER & STAIRCASE -->
-<section class="cs-section">
-  <div class="cs-section-header">
-    <p class="cs-room-label">Foyer &amp; Staircase</p>
-    <h2 class="cs-room-title">The Grand Entrance</h2>
-    <p class="cs-room-desc">A curved staircase railing and arched doorway set the architectural tone at entry. Custom wainscoting and panel molding carry through into the hallways, anchoring the home's transitional identity.</p>
-  </div>
-  <div class="cs-img-grid cols-2" style="margin-bottom:12px;">
-    <img src="../assets/images/cs-nj/7.png" alt="Foyer staircase inspiration">
-    <img src="../assets/images/cs-nj/8.png" alt="Foyer arched doorway inspiration">
-  </div>
-  <div class="cs-img-grid cols-2">
-    <img src="../assets/images/cs-nj/9.png" alt="Wainscoting and panel molding inspiration">
-    <img src="../assets/images/cs-nj/1.png" alt="Staircase before and after reference">
-  </div>
-</section>
-
-<hr class="cs-divider">
-
-<!-- KITCHEN -->
-<section class="cs-section">
-  <div class="cs-section-header">
-    <p class="cs-room-label">Kitchen</p>
-    <h2 class="cs-room-title">The Heart of the Home</h2>
-    <p class="cs-room-desc">A complete kitchen renovation with warm wood cabinetry, a marble backsplash, brass pot filler, and a dedicated wine wall with Crittall-style glass cabinet. The breakfast nook anchors casual dining with a round oak table and banquette seating.</p>
-  </div>
-  <img src="../assets/images/cs-nj/14.png" alt="Kitchen inspiration" class="cs-img-full" style="margin-bottom:12px;">
-  <div class="cs-img-grid cols-2">
-    <img src="../assets/images/cs-nj/15.png" alt="Wine wall and butler's pantry inspiration">
-    <img src="../assets/images/cs-nj/16.png" alt="Breakfast nook round table options">
-  </div>
-</section>
-
-<hr class="cs-divider">
-
-<!-- DINING ROOM -->
-<section class="cs-section">
-  <div class="cs-section-header">
-    <p class="cs-room-label">Dining Room</p>
-    <h2 class="cs-room-title">Elevated Gathering</h2>
-    <p class="cs-room-desc">A range of dining table options explored — from sleek black to travertine stone — all anchored by sculptural seating and statement lighting overhead.</p>
-  </div>
-  <img src="../assets/images/cs-nj/13.png" alt="Dining room inspiration" class="cs-img-full">
-</section>
-
-<hr class="cs-divider">
-
-<!-- LIVING ROOM -->
-<section class="cs-section">
-  <div class="cs-section-header">
-    <p class="cs-room-label">Living Room</p>
-    <h2 class="cs-room-title">Open &amp; Layered</h2>
-    <p class="cs-room-desc">Coffered ceilings, a cream sectional, linen drapes, and flanking built-ins around the fireplace define a living room that is both airy and architectural.</p>
-  </div>
-  <img src="../assets/images/cs-nj/17.png" alt="Living room inspiration" class="cs-img-full" style="margin-bottom:12px;">
-  <img src="../assets/images/cs-nj/18.png" alt="Living room built-ins and fireplace inspiration" class="cs-img-full">
-</section>
-
-<hr class="cs-divider">
-
-<!-- LIGHTING -->
-<section class="cs-section">
-  <div class="cs-section-header">
-    <p class="cs-room-label">Lighting</p>
-    <h2 class="cs-room-title">Finishing Details</h2>
-    <p class="cs-room-desc">Brass chandeliers, pendant drops, and gallery-wall picture lights were curated to add warmth and texture throughout — never an afterthought.</p>
-  </div>
-  <div class="cs-img-grid cols-2" style="margin-bottom:12px;">
-    <img src="../assets/images/cs-nj/10.png" alt="Chandelier options — brass">
-    <img src="../assets/images/cs-nj/11.png" alt="Chandelier options — transparent background">
-  </div>
-  <img src="../assets/images/cs-nj/12.png" alt="Hallway and staircase sconce lighting" class="cs-img-full">
-</section>
-
-<hr class="cs-divider">
-
-<!-- PLAYROOM -->
-<section class="cs-section">
-  <div class="cs-section-header">
-    <p class="cs-room-label">Playroom</p>
-    <h2 class="cs-room-title">Made for Play</h2>
-    <p class="cs-room-desc">A dedicated children's space designed with warm neutrals, custom built-in storage, and a play kitchen — beautiful enough to share the aesthetic of the whole home.</p>
-  </div>
-  <img src="../assets/images/cs-nj/24.png" alt="Playroom and children's room inspiration" class="cs-img-full">
-</section>
-
-<hr class="cs-divider">
-
-<!-- MASTER SUITE -->
-<section class="cs-section">
-  <div class="cs-section-header">
-    <p class="cs-room-label">Master Suite</p>
-    <h2 class="cs-room-title">A Quiet Retreat</h2>
-    <p class="cs-room-desc">The master bedroom wraps around an all-white and cream palette — layered bouclé, sculptural pendants, sheer drapes, and an upholstered headboard. The ensuite bath follows with Calacatta marble, a freestanding soaking tub, and gold wall-mount fixtures.</p>
-  </div>
-  <img src="../assets/images/cs-nj/20.png" alt="Master bedroom inspiration" class="cs-img-full" style="margin-bottom:12px;">
-  <div class="cs-img-grid cols-2" style="margin-bottom:12px;">
-    <img src="../assets/images/cs-nj/21.png" alt="Master bath — double vanity and marble shower">
-    <img src="../assets/images/cs-nj/22.png" alt="Master bath — soaking tub and glass shower details">
-  </div>
-</section>
-
-<hr class="cs-divider">
-
-<!-- GUEST BATH -->
-<section class="cs-section">
-  <div class="cs-section-header">
-    <p class="cs-room-label">Guest Bath</p>
-    <h2 class="cs-room-title">Spa-Inspired</h2>
-    <p class="cs-room-desc">The guest bathroom carries the same material sophistication — fluted vanity fronts, stone vessel sinks, gold wall-mount faucets, and Calacatta marble shower surrounds.</p>
-  </div>
-  <div class="cs-img-grid cols-2" style="margin-bottom:12px;">
-    <img src="../assets/images/cs-nj/19.png" alt="Guest bath vanity and fixture inspiration">
-    <img src="../assets/images/cs-nj/23.png" alt="Guest bath shower inspiration">
-  </div>
-</section>
 
 <!-- CTA -->
 <section class="cs-cta">
   <h2>Start Your Project</h2>
-  <p>Ready to transform your home? Let's talk about what's possible.</p>
   <a href="/contact" class="btn">Get in Touch</a>
 </section>
 
