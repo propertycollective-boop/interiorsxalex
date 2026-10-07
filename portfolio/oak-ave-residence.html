@@ -206,12 +206,17 @@
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
-      .cs-hero { padding: 72px 24px 56px; }
-      .cs-hero-content h1 { font-size: 36px; }
+      .cs-hero { padding: 72px 24px 48px; }
+      .cs-hero-content h1 { font-size: 32px; }
+      .cs-hero-tagline { font-size: 15px; }
       .cs-meta-inner { padding: 0 24px; gap: 0; flex-direction: column; }
       .cs-meta-item { border-right: none; border-bottom: 1px solid var(--bl); padding-right: 0; }
-      .cs-intro-grid { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
-      .cs-room { padding: 0 24px; }
+      .cs-intro { padding: 48px 0; }
+      .cs-intro-grid { grid-template-columns: 1fr; gap: 36px; padding: 0 24px; }
+      .cs-rooms { padding: 56px 0; }
+      .cs-room { padding: 0 24px; margin-bottom: 56px; }
+      .cs-room h3 { font-size: 22px; margin-bottom: 20px; }
+      .cs-divider { margin-bottom: 56px; padding: 0 24px; }
       .cs-img-grid.cols-2,
       .cs-img-grid.cols-3,
       .cs-img-grid.cols-4,
@@ -457,6 +462,16 @@
       <p class="footer-copy">&copy; 2026 Interiors x Alex. All rights reserved. | <a href="/privacy" style="text-decoration:underline;">Privacy Policy</a> | <a href="/terms" style="text-decoration:underline;">Terms of Use</a></p>
     </div>
   </footer>
+
+  <div class="mobile-nav-overlay" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+    <button class="mobile-nav-close" aria-label="Close">&times;</button>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/services">Services</a>
+    <a href="/portfolio">Portfolio</a>
+    <a href="/contact">Contact</a>
+    <a href="https://www.instagram.com/interiorsxalex" target="_blank" rel="noopener" class="mobile-nav-social">@interiorsxalex</a>
+  </div>
 
   <script src="../assets/js/main.js"></script>
 </body>
