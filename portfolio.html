@@ -35,6 +35,84 @@
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1032090879216987&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel Code -->
   <link rel="stylesheet" href="assets/css/style.css?v=5">
+  <style>
+    /* ── CASE STUDY CARDS ── */
+    .cs-card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+    .cs-card {
+      background: var(--cr);
+      border: 1px solid var(--bl);
+      transition: box-shadow .3s ease;
+    }
+    .cs-card-link:hover .cs-card {
+      box-shadow: 0 8px 32px rgba(44,36,24,.08);
+    }
+    .cs-card-img {
+      background: var(--ow);
+      border-bottom: 1px solid var(--bl);
+      overflow: hidden;
+    }
+    .cs-card-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .cs-card-link:hover .cs-card-img img {
+      transform: scale(1.02);
+    }
+    .cs-card-body {
+      padding: 32px 40px 36px;
+    }
+    .cs-card-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sd);
+      margin: 0 0 10px;
+    }
+    .cs-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--es);
+      margin: 0 0 14px;
+      line-height: 1.1;
+    }
+    .cs-card-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: var(--mn);
+      line-height: 1.7;
+      margin: 0 0 24px;
+      max-width: 540px;
+    }
+    .cs-card-cta {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--es);
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+    }
+    .cs-card-divider {
+      height: 48px;
+    }
+    @media (max-width: 768px) {
+      #tab-casestudies > div { padding: 48px 20px 64px; }
+      .cs-card-body { padding: 24px 24px 28px; }
+      .cs-card-title { font-size: 24px; }
+      .cs-card-desc { font-size: 14px; }
+      .cs-card-divider { height: 32px; }
+    }
+  </style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -179,64 +257,60 @@
 
   <!-- TAB: CASE STUDIES -->
   <div id="tab-casestudies" class="tab-panel">
-    <div class="container" style="padding: 64px 40px; max-width: 1160px; margin: 0 auto;">
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px;">
+    <div style="max-width: 860px; margin: 0 auto; padding: 72px 40px 88px;">
 
-        <!-- NJ Estate (Edinburgh) -->
-        <a href="/portfolio/new-jersey-estate" style="text-decoration:none; color:inherit; display:block;">
-          <div style="overflow:hidden; background:var(--cr); border:1px solid var(--bl);">
-            <div style="overflow:hidden; height:340px;">
-              <img src="assets/images/cs-edinburgh/sitting-room-mood-1.png"
-                   alt="New Jersey Estate case study"
-                   style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; transition:transform .4s ease;"
-                   onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
-            </div>
-            <div style="padding: 28px 32px 32px;">
-              <p style="font-family:var(--ff-sans); font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--sd); margin:0 0 8px;">Full-Home Design &nbsp;·&nbsp; New Jersey</p>
-              <h3 style="font-family:var(--ff-serif); font-size:26px; font-weight:400; color:var(--es); margin:0 0 12px;">New Jersey Estate</h3>
-              <p style="font-family:var(--ff-serif); font-size:15px; color:var(--mn); line-height:1.65; margin:0 0 20px;">Six-room design concept — living room, sitting room, dining room, kitchen, office, and kid's bath. Warm, grounded, and considered throughout.</p>
-              <span style="font-family:var(--ff-sans); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--es); border-bottom:1px solid currentColor; padding-bottom:2px;">View Case Study</span>
-            </div>
+      <!-- NJ Estate -->
+      <a href="/portfolio/new-jersey-estate" class="cs-card-link">
+        <div class="cs-card">
+          <div class="cs-card-img">
+            <img src="assets/images/cs-edinburgh/sitting-room-mood-1.png"
+                 alt="New Jersey Estate — sitting room mood board">
           </div>
-        </a>
-
-        <!-- NJ Residence -->
-        <a href="/portfolio/new-jersey-residence" style="text-decoration:none; color:inherit; display:block;">
-          <div style="overflow:hidden; background:var(--cr); border:1px solid var(--bl);">
-            <div style="overflow:hidden; height:340px;">
-              <img src="assets/images/cs-nj/20.png"
-                   alt="New Jersey Residence case study"
-                   style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; transition:transform .4s ease;"
-                   onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
-            </div>
-            <div style="padding: 28px 32px 32px;">
-              <p style="font-family:var(--ff-sans); font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--sd); margin:0 0 8px;">Full-Home Renovation &nbsp;·&nbsp; New Jersey</p>
-              <h3 style="font-family:var(--ff-serif); font-size:26px; font-weight:400; color:var(--es); margin:0 0 12px;">New Jersey Residence</h3>
-              <p style="font-family:var(--ff-serif); font-size:15px; color:var(--mn); line-height:1.65; margin:0 0 20px;">Open-concept renovation with custom millwork, travertine, a wine wall, and a warm neutral palette carried through every room.</p>
-              <span style="font-family:var(--ff-sans); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--es); border-bottom:1px solid currentColor; padding-bottom:2px;">View Case Study</span>
-            </div>
+          <div class="cs-card-body">
+            <p class="cs-card-eyebrow">Full-Home Design &nbsp;·&nbsp; New Jersey</p>
+            <h3 class="cs-card-title">New Jersey Estate</h3>
+            <p class="cs-card-desc">Six-room design concept — living room, sitting room, dining room, kitchen, office, and kid's bath. Warm, grounded, and considered throughout.</p>
+            <span class="cs-card-cta">View Case Study</span>
           </div>
-        </a>
+        </div>
+      </a>
 
-        <!-- Historic NJ Colonial -->
-        <a href="/portfolio/historic-nj-colonial" style="text-decoration:none; color:inherit; display:block;">
-          <div style="overflow:hidden; background:var(--cr); border:1px solid var(--bl);">
-            <div style="overflow:hidden; height:340px;">
-              <img src="assets/images/cs-oak/3.png"
-                   alt="Historic New Jersey Colonial case study"
-                   style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; transition:transform .4s ease;"
-                   onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
-            </div>
-            <div style="padding: 28px 32px 32px;">
-              <p style="font-family:var(--ff-sans); font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--sd); margin:0 0 8px;">Living Room Design &nbsp;·&nbsp; New Jersey</p>
-              <h3 style="font-family:var(--ff-serif); font-size:26px; font-weight:400; color:var(--es); margin:0 0 12px;">Historic New Jersey Colonial</h3>
-              <p style="font-family:var(--ff-serif); font-size:15px; color:var(--mn); line-height:1.65; margin:0 0 20px;">A living room redesign honoring the home's Colonial architecture — velvet sofas, wingback seating, two paint directions, and three floor plan options.</p>
-              <span style="font-family:var(--ff-sans); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--es); border-bottom:1px solid currentColor; padding-bottom:2px;">View Case Study</span>
-            </div>
+      <div class="cs-card-divider"></div>
+
+      <!-- NJ Residence -->
+      <a href="/portfolio/new-jersey-residence" class="cs-card-link">
+        <div class="cs-card">
+          <div class="cs-card-img">
+            <img src="assets/images/cs-nj/9.png"
+                 alt="New Jersey Residence — living room mood board">
           </div>
-        </a>
+          <div class="cs-card-body">
+            <p class="cs-card-eyebrow">Full-Home Renovation &nbsp;·&nbsp; New Jersey</p>
+            <h3 class="cs-card-title">New Jersey Residence</h3>
+            <p class="cs-card-desc">Open-concept renovation with custom millwork, travertine, a wine wall, and a warm neutral palette carried through every room.</p>
+            <span class="cs-card-cta">View Case Study</span>
+          </div>
+        </div>
+      </a>
 
-      </div>
+      <div class="cs-card-divider"></div>
+
+      <!-- Historic NJ Colonial -->
+      <a href="/portfolio/historic-nj-colonial" class="cs-card-link">
+        <div class="cs-card">
+          <div class="cs-card-img">
+            <img src="assets/images/cs-oak/3.png"
+                 alt="Historic New Jersey Colonial — living room mood board">
+          </div>
+          <div class="cs-card-body">
+            <p class="cs-card-eyebrow">Living Room Design &nbsp;·&nbsp; New Jersey</p>
+            <h3 class="cs-card-title">Historic New Jersey Colonial</h3>
+            <p class="cs-card-desc">A living room redesign honoring the home's Colonial architecture — velvet sofas, wingback seating, two paint directions, and three floor plan options.</p>
+            <span class="cs-card-cta">View Case Study</span>
+          </div>
+        </div>
+      </a>
+
     </div>
   </div>
 
