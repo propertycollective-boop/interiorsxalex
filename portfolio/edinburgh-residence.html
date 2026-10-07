@@ -8,7 +8,7 @@
   <link rel="icon" href="../assets/images/favicon.ico">
   <link rel="stylesheet" href="../assets/css/style.css?v=8">
   <style>
-    * { font-family: 'Cormorant Garamond', 'Times New Roman', serif; }
+    * { font-family: 'Cormorant Garamond', 'Times New Roman', serif !important; }
     .cs-meta-value { font-size: 16px; font-weight: 400; }
     .cs-scope-list li { font-size: 13px; letter-spacing: .08em; }
 
@@ -236,7 +236,8 @@
       .cs-hero-content h1 { font-size: 32px; }
       .cs-hero-tagline { font-size: 15px; }
       .cs-meta-inner { padding: 0 24px; gap: 0; flex-direction: column; }
-      .cs-meta-item { border-right: none; border-bottom: 1px solid var(--bl); padding-right: 0; }
+      .cs-meta-item { border-right: none; border-bottom: 1px solid var(--bl); padding-right: 0; padding-top: 14px; padding-bottom: 14px; }
+      .cs-meta-item:last-child { border-bottom: none; }
       .cs-intro { padding: 48px 0; }
       .cs-intro-grid { grid-template-columns: 1fr; gap: 36px; padding: 0 24px; }
       .cs-rooms { padding: 56px 0; }
