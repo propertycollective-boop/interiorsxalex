@@ -272,22 +272,22 @@
 <body>
 
   <!-- NAV -->
-  <header class="site-header" id="site-header">
-    <div class="header-inner">
-      <a href="/" class="logo">Interiors <em>x</em> Alex</a>
-      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
-        <ul>
-          <li><a href="/about">About</a></li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/portfolio" class="active">Portfolio</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </nav>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <ul class="nav-links left">
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Services</a></li>
+      </ul>
+      <a href="/" class="nav-logo-wrap">
+        <img class="nav-logo" src="../assets/images/logo.png" alt="Interiors x Alex">
+      </a>
+      <ul class="nav-links right">
+        <li><a href="/portfolio" class="active">Portfolio</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu">&#9776;</button>
     </div>
-  </header>
+  </nav>
 
   <!-- HERO -->
   <section class="cs-hero">
@@ -469,26 +469,22 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <div class="footer-brand">
-        <p class="footer-logo">Interiors <em>x</em> Alex</p>
-        <p class="footer-tagline">Design that lives with you.</p>
+      <div class="footer-logo">
+        <img src="../assets/images/logo.png" alt="Interiors x Alex">
       </div>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <ul>
-          <li><a href="/about">About</a></li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/portfolio">Portfolio</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
+      <nav class="footer-nav">
+        <a href="/about">About</a>
+        <a href="/services">Services</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/contact">Contact</a>
       </nav>
-      <div class="footer-legal">
-        <p>&copy; <span id="footer-year"></span> Interiors x Alex. All rights reserved.</p>
-        <p><a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms">Terms of Use</a></p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/interiorsxalex" target="_blank" rel="noopener">@interiorsxalex</a>
       </div>
+      <p class="footer-copy">&copy; 2026 Interiors x Alex. All rights reserved. | <a href="/privacy" style="text-decoration:underline;">Privacy Policy</a> | <a href="/terms" style="text-decoration:underline;">Terms of Use</a></p>
     </div>
   </footer>
 
   <script src="../assets/js/main.js"></script>
-  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
